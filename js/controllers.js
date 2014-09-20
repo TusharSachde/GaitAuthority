@@ -23,7 +23,11 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('HomeCtrl', function ($scope, $stateParams, $cordovaCapture) {
-    $scope.captureVideo = function () {
+    $scope.captureVideo2 = function () {
+        console.log("Sunny Leone");
+    };
+        
+        $scope.captureVideo = function () {
         console.log("Sunny Leone");
         var options = {
             limit: 3,

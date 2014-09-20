@@ -29,5 +29,7 @@
 		<preference name="BackgroundColor" value="0x000000"/>
 		<preference name="KeepRunning" value="true"/>
 		<preference name="LoadUrlTimeoutValue" value="20000" />
+       
+        <gap:plugin name="org.apache.cordova.media-capture"  />
 		
 	</widget>
