@@ -1,0 +1,24 @@
+/* Empty. Add your own CSS if you like */
+
+.controls {
+    width: 100%;
+    position: absolute;
+}
+.controls button {
+    font-size: 30px;
+}
+.controls button+button {
+    margin-left: 25px
+}
+.innerctrl {
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.35);
+    width: 300px;
+    text-align: center;
+}
+.videoFrame {
+    text-align: center;
+}
+.videoFrame button {
+    font-size: 40px;
+}

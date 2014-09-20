@@ -1,0 +1,25 @@
+<ion-view title="Gait Authority">
+    <ion-content class="has-header">
+        <div class="controls">
+            <div class="innerctrl">
+                <button class="button button-icon ion-edit" ngclick=""></button>
+                <button class="button button-icon ion-play" ngclick=""></button>
+                <button class="button button-icon ion-stop" ngclick=""></button>
+            </div>
+        </div>
+        <div class="row videoFrame">
+            <div class="col">
+                <video width="100%" height="{{autoHeight}}" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                </video>
+                <button class="button button-icon ion-record" ngclick="captureVideo();"></button>
+            </div>
+            <div class="col">
+                <video width="100%" height="{{autoHeight}}" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                </video>
+                <button class="button button-icon ion-record" ngclick="captureVideo();"></button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
