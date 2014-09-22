@@ -23,6 +23,7 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('HomeCtrl', function ($scope, $stateParams, $cordovaCapture) {
+    
     $scope.captureVideo2 = function () {
         console.log("Sunny Leone");
     };
@@ -41,4 +42,11 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     }
     $scope.autoHeight = window.innerHeight-43;
+})
+
+.controller('PlaylistCtrl', function($scope, $stateParams, $cordovaCapture) {
+})
+.controller('LoginpageCtrl', function($scope, $stateParams, $cordovaCapture) {
+})
+.controller('ExitCtrl', function($scope, $stateParams, $cordovaCapture) {
 });

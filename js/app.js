@@ -30,6 +30,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           controller: 'HomeCtrl'
         }
       }
+    })
+    .state('app.loginpage', {
+      url: "/loginpage",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/loginpage.html",
+          controller: 'LoginpageCtrl'
+        }
+      }
+    })
+    .state('app.exit', {
+      url: "/exit",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/exit.html",
+          controller: 'ExitCtrl'
+        }
+      }
     });
     
   $urlRouterProvider.otherwise('/app/home');
