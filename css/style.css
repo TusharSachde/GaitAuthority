@@ -20,16 +20,14 @@ li {
 }
 .controls button {
     font-size: 30px;
-    text-shadow: 0px 0px 6px rgba(85, 85, 85, 0.35);
-    color: #5F5F5F;
 }
 .controls button+button {
     margin-left: 25px
 }
 .innerctrl {
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.8);
-    width: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    width: 240px;
     text-align: center;
     border-bottom: 2px solid rgba(218, 218, 218, 0.8);
 }
@@ -59,7 +57,6 @@ img.logo {
 .background {
     background-image: url(../img/bg.jpg);
     background-size: 100% 100%;
-    margin-top: -2px;
 }
 .button-go {
     padding: 4px 10px;
@@ -73,12 +70,6 @@ img.logo {
 }
 .button.light {
     color: #bebebe;
-}
-.ion-record {
-    color: rgb(248, 62, 62);
-    border: 1px solid #CCC;
-    border-radius: 100%;
-    margin: 10px 0;
 }
 .videoHolder {
     background: white;
@@ -94,3 +85,25 @@ img.logo {
 .list li {
     background: white;
 }
+/*Icon colors*/
+.ion-edit {
+    color: #4DC0C0;
+    text-shadow: 2px 2px 0 #ccc;
+    margin: 10px 0;
+}
+.ion-record {
+    color: #FA4E4E;
+    text-shadow: 2px 2px 0 #ccc;
+    margin: 10px 0;
+}
+.ion-play {
+    color: #5B7FF1;
+    margin: 10px 0;
+    text-shadow: 2px 2px 0 #ccc;
+}
+.ion-stop {
+    color: #F66A5E;
+    margin: 10px 0;
+    text-shadow: 2px 2px 0 #ccc;
+}
+/*end*/
