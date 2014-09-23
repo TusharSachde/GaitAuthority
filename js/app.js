@@ -50,6 +50,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       }
     });
     
-  $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/app/loginpage');
 });
 

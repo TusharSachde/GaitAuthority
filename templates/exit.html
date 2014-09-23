@@ -1,35 +1,43 @@
-<ion-view title="GAIT CHECK">
+<ion-view title="Review">
+    <ion-nav-buttons side="left">
+        <img src="img/zFlo.png" alt="" class="zflo">
+        <ion-nav-buttons side="right">
+            <a class="button button-icon light icon ion-home" href="#/app/home"></a>
+        </ion-nav-buttons>
+    </ion-nav-buttons>
     <ion-content class="has-header">
-        
         <ul class="list">
-
-          <li class="item item-toggle">
-             Did The Customer Purchase The Shoe?
-             <label class="toggle toggle-balanced">
-               <input type="checkbox">
-               <div class="track">
-                 <div class="handle"></div>
-               </div>
-             </label>
-          </li>
-          <li class="item item-toggle">
-             Did the Customer Purchase an insole?
-             <label class="toggle toggle-balanced">
-               <input type="checkbox">
-               <div class="track">
-                 <div class="handle"></div>
-               </div>
-             </label>
-          <li >
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">Description</span>
-                <textarea ng-model="membership.address"></textarea>
-            </label>
-          </li>
-
+            <li class="item item-toggle">
+                Did The Customer Purchase The Shoe?
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+            <li class="item item-toggle">
+                Did the Customer Purchase an insole?
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+                <li>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label">Description</span>
+                        <textarea ng-model="membership.address"></textarea>
+                    </label>
+                </li>
         </ul>
-        <div class="padding"><a href="#" ng-click=""><button class="button button-full button-positive">
-          Submit
-        </button></a>
+        <div class="padding">
+            <button class="button button-full button-positive">
+                Submit
+            </button>
+        </div>
     </ion-content>
+    <div class="bar bar-footer bar-stable">
+        <div class="title" style="color: #979797;font-size: 14px;">zFlo &copy; 2014 All rights reserved.</div>
+    </div>
 </ion-view>

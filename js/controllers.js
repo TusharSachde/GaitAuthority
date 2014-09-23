@@ -25,11 +25,9 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('HomeCtrl', function ($scope, $stateParams, $cordovaCapture) {
     
     $scope.captureVideo2 = function () {
-        console.log("Sunny Leone");
     };
         
         $scope.captureVideo = function () {
-        console.log("Sunny Leone");
         var options = {
             limit: 3,
             duration: 15
@@ -41,12 +39,10 @@ angular.module('starter.controllers', ['ngCordova'])
             // An error occured. Show a message to the user
         });
     }
-    $scope.autoHeight = window.innerHeight-43;
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams, $cordovaCapture) {
-})
 .controller('LoginpageCtrl', function($scope, $stateParams, $cordovaCapture) {
+    $scope.autoHeight = window.innerHeight-86;
 })
 .controller('ExitCtrl', function($scope, $stateParams, $cordovaCapture) {
 });

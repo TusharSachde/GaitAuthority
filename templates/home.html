@@ -1,4 +1,8 @@
-<ion-view title="Gait Authority">
+<ion-view title="Record videos">
+    <ion-nav-buttons side="left">
+        <img src="img/zFlo.png" alt="" class="zflo">
+    </ion-nav-buttons>
+    
     <ion-content class="has-header">
         <div class="controls">
             <div class="innerctrl">
@@ -9,16 +13,17 @@
         </div>
         <div class="row videoFrame">
             <div class="col">
-                <video width="100%" height="{{autoHeight}}" controls>
-                    <source src="movie.mp4" type="video/mp4">
-                </video>
-                <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                <div class="videoHolder">
+                    <img src="img/record.jpg" class="full-image">
+                    <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                </div>
             </div>
             <div class="col">
-                <video width="100%" height="{{autoHeight}}" controls>
-                    <source src="movie.mp4" type="video/mp4">
-                </video>
-                <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                
+                <div class="videoHolder">
+                    <img src="img/record.jpg" class="full-image">
+                    <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                </div>
             </div>
         </div>
     </ion-content>

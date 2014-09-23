@@ -1,20 +1,37 @@
 /* Empty. Add your own CSS if you like */
 
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+ body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+ul,
+li {
+    font-family: 'Oxygen', sans-serif !important;
+}
 .controls {
     width: 100%;
     position: absolute;
 }
 .controls button {
     font-size: 30px;
+    text-shadow: 0px 0px 6px rgba(85, 85, 85, 0.35);
+    color: #5F5F5F;
 }
 .controls button+button {
     margin-left: 25px
 }
 .innerctrl {
     margin: 0 auto;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.8);
     width: 300px;
     text-align: center;
+    border-bottom: 2px solid rgba(218, 218, 218, 0.8);
 }
 .videoFrame {
     text-align: center;
@@ -22,34 +39,58 @@
 .videoFrame button {
     font-size: 40px;
 }
-.inputborder
-{
-    width: 70%;
-    outline:solid 1px gray;
-    border-radius:5px;
+.loginbox {
+    padding: 6px !important;
+    background: rgba(255, 255, 255, 0.75);
+    width: 364px;
+    text-align: center;
+    float: left;
 }
-.inputbox input
-{
- display:block;
+img.logo {
+    width: 100%;
+    margin-top: 43%;
 }
-input.rounded {
-	border: 1px solid #ccc;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	-moz-box-shadow: 2px 2px 3px #666;
-	-webkit-box-shadow: 2px 2px 3px #666;
-	box-shadow: 2px 2px 3px #666;
-	font-size: 20px;
-	padding: 4px 7px;
-	outline: 0;
-/*    align-content: : center;*/
-	-webkit-appearance: none;
+.zflo {
+    width: 54px;
+    height: 23px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
-.inputboxcenter
-{
+.background {
+    background-image: url(../img/bg.jpg);
+    background-size: 100% 100%;
+    margin-top: -2px;
+}
+.button-go {
+    padding: 4px 10px;
+    background: white;
+    border: 0;
+    border-radius: 0;
+}
+.module {
+    width: 400px;
     margin: 0 auto;
 }
-input.rounded:focus {
-	border-color: #339933;
+.button.light {
+    color: #bebebe;
+}
+.ion-record {
+    color: rgb(248, 62, 62);
+    border: 1px solid #CCC;
+    border-radius: 100%;
+    margin: 10px 0;
+}
+.videoHolder {
+    background: white;
+    box-shadow: 0px 0px 5px #ccc;
+    border-bottom: 2px solid #ccc;
+}
+.item-content .icon {
+    color: #aaa;
+}
+.scroll-content {
+    background: #ECECEC;
+}
+.list li {
+    background: white;
 }
