@@ -2,7 +2,7 @@
     <ion-nav-buttons side="left">
         <img src="img/zFlo.png" alt="" class="zflo">
     </ion-nav-buttons>
-    
+
     <ion-content class="has-header">
         <div class="controls">
             <div class="innerctrl">
@@ -14,12 +14,15 @@
         <div class="row videoFrame">
             <div class="col">
                 <div class="videoHolder">
+                    <video width="320" height="240" controls>
+                        <source ng-model = "video" type="video/mp4">
+                    </video>
                     <img src="img/record.jpg" class="full-image">
                     <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
                 </div>
             </div>
             <div class="col">
-                
+
                 <div class="videoHolder">
                     <img src="img/record.jpg" class="full-image">
                     <button class="button button-icon ion-play" ng-click="captureVideo();"></button>

@@ -29,12 +29,12 @@ angular.module('starter.controllers', ['ngCordova'])
         
         $scope.captureVideo = function () {
         var options = {
-            limit: 3,
+            limit: 1,
             duration: 15
         };
 
         $cordovaCapture.captureVideo(options).then(function (videoData) {
-            // Success! Video data is here
+            $scope.video = videoData;
         }, function (err) {
             // An error occured. Show a message to the user
         });
