@@ -20,6 +20,8 @@ li {
 }
 .controls button {
     font-size: 30px;
+    text-shadow: 2px 2px 0 #ccc;
+    color: #898989 !important;
 }
 .controls button+button {
     margin-left: 25px
@@ -76,6 +78,10 @@ img.logo {
     box-shadow: 0px 0px 5px #ccc;
     border-bottom: 2px solid #ccc;
 }
+.videoHolder .button-icon {
+    margin: 10px 0;
+    text-shadow: 2px 2px 0 #ccc;
+}
 .item-content .icon {
     color: #aaa;
 }
@@ -88,22 +94,14 @@ img.logo {
 /*Icon colors*/
 .ion-edit {
     color: #4DC0C0;
-    text-shadow: 2px 2px 0 #ccc;
-    margin: 10px 0;
 }
 .ion-record {
     color: #FA4E4E;
-    text-shadow: 2px 2px 0 #ccc;
-    margin: 10px 0;
 }
 .ion-play {
     color: #5B7FF1;
-    margin: 10px 0;
-    text-shadow: 2px 2px 0 #ccc;
 }
 .ion-stop {
     color: #F66A5E;
-    margin: 10px 0;
-    text-shadow: 2px 2px 0 #ccc;
 }
 /*end*/
