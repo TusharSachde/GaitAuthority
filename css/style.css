@@ -41,6 +41,8 @@ li {
 }
 .loginbox {
     padding: 6px !important;
+    border-radius: 0px !important;
+    -webkit-appearance:none;
     background: rgba(255, 255, 255, 0.75);
     width: 364px;
     text-align: center;
