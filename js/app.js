@@ -31,6 +31,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         }
       }
     })
+    .state('app.record', {
+      url: "/record",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/record.html",
+          controller: 'HomeCtrl'
+        }
+      }
+    })
     .state('app.loginpage', {
       url: "/loginpage",
       views: {
