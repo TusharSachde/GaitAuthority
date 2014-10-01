@@ -14,7 +14,10 @@
         <div class="row videoFrame">
             <div class="col">
                 <div class="videoHolder">
-                    <img src="img/record.jpg" class="full-image">
+                    <video width="100%" height="{{autoHeight}}" controls>
+                        <source ng-src="{{path}}" type="video/mp4">
+                    </video>
+                    <!-- <img src="img/record.jpg" class="full-image">-->
                     <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
                 </div>
             </div>
