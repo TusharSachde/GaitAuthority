@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ngCordova'], ['ngTouch'])
+angular.module('starter.controllers', ['ngCordova','ngTouch'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
