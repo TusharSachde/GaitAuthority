@@ -10,10 +10,10 @@ angular.module('starter.controllers', ['ngCordova'])
         
         $scope.captureVideo = function () {
             
-        var options = {
+       /* var options = {
             limit: 1,
             duration: 15
-        };
+        };*/
             
         var captureSuccess = function(mediaFiles) {
             var path = mediaFiles.fullPath;
@@ -23,7 +23,7 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log("error code"+error);
         };
 
-        $cordovaCapture.captureVideo(captureSuccess, captureError, options);
+        $cordovaCapture.captureVideo(captureSuccess, captureError, {limit: 1, duration: 15});
         /*    (options).then(function (videoData) {
             $scope.path = videoData.fullPath;
             console.log($scope.path);
