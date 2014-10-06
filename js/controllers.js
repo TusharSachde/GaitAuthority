@@ -1,7 +1,6 @@
-angular.module('starter.controllers', ['ngCordova','ngTouch'])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-   
 })
 
 .controller('HomeCtrl', function ($scope, $stateParams, $cordovaCapture) {
