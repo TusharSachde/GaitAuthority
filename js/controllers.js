@@ -23,13 +23,12 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log("error code"+error);
         };
 
-        $cordovaCapture.captureVideo(captureSuccess, captureError, {limit: 1, duration: 15});
-        /*    (options).then(function (videoData) {
-            $scope.path = videoData.fullPath;
+        $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
+            $scope.path = mediaFiles.fullPath;
             console.log($scope.path);
         }, function (err) {
             // An error occured. Show a message to the user
-        });*/
+        });
     }
 })
 
