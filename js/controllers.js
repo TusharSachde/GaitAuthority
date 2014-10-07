@@ -15,13 +15,13 @@ angular.module('starter.controllers', ['ngCordova'])
             duration: 15
         };
             
-        var captureSuccess = function(mediaFiles) {
+      /*  var captureSuccess = function(mediaFiles) {
             var path = mediaFiles[0].fullPath;
             console.log(path);
         };
         var captureError = function(error) {
             console.log("error code"+error);
-        };
+        };*/
 
         $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
             $scope.path = mediaFiles[0].fullPath;
