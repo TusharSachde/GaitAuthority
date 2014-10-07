@@ -16,7 +16,7 @@ angular.module('starter.controllers', ['ngCordova'])
         };
             
         var captureSuccess = function(mediaFiles) {
-            var path = mediaFiles.fullPath;
+            var path = mediaFiles[0].fullPath;
             console.log(path);
         };
         var captureError = function(error) {
