@@ -1,3 +1,5 @@
+$video1="";
+
 angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {})
@@ -7,11 +9,18 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.captureVideo2 = function () {};
 
     $scope.playpause = function () {
-        console.log("func");
-        var vid1 = document.getElementById("video1"); 
-        
-            vid1.play();
-     
+        console.log("Video 1 Play");
+        $video1= $(".video1").get(0);
+        if($video1.paused)
+        {
+            $video1.play(); 
+            $video1.playbackRate = 1;
+        }
+        else 
+        {
+            $video1.pause(); 
+        }
+        //console.log();
     };
 
     $scope.config = {
