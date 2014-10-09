@@ -42,7 +42,7 @@ li {
 .loginbox {
     padding: 6px !important;
     border-radius: 0px !important;
-    -webkit-appearance:none;
+    -webkit-appearance: none;
     background: rgba(255, 255, 255, 0.75);
     width: 364px;
     text-align: center;
@@ -94,6 +94,7 @@ img.logo {
     background: white;
 }
 /*Icon colors*/
+
 .ion-edit {
     color: #4DC0C0;
 }
@@ -105,5 +106,14 @@ img.logo {
 }
 .ion-stop {
     color: #F66A5E;
+}
+.appclass {
+    /* prevent text selection on ui */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* prevent scrolling in windows phone */
+    -ms-touch-action: none;
 }
 /*end*/

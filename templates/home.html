@@ -3,11 +3,11 @@
         <img src="img/zFlo.png" alt="" class="zflo">
     </ion-nav-buttons>
 
-    <ion-content class="has-header">
+    <ion-content ng-class="appclass" scroll="{{scroller}}">
         <div class="controls">
             <div class="innerctrl">
-                <button class="button button-icon ion-edit" ng-click=""></button>
-                <button class="button button-icon ion-play" ng-click=""></button>
+                <button class="button button-icon ion-edit" ></button>
+                <button class="button button-icon ion-play" ng-click="changeclass();"></button>
                 <button class="button button-icon ion-stop" ng-click=""></button>
             </div>
         </div>
@@ -15,13 +15,14 @@
             <div class="col">
                 <div class="videoHolder">
                     <video class="video1" width="100%" height="{{autoHeight}}" controls>
-                     <source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">
-                       <!-- <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">-->
+                     <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
+                        <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
                    
                     </video>
                     <!-- <img src="img/record.jpg" class="full-image">-->
                     <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
                     <button class="button button-icon ion-play" ng-click="playpause();"></button>
+                    <button class="button button-icon ion-play" ng-click="forward();"></button>
                 </div>
             </div>
             <div class="col">
