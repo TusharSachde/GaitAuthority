@@ -3,26 +3,47 @@
         <img src="img/zFlo.png" alt="" class="zflo">
     </ion-nav-buttons>
 
-    <ion-content ng-class="appclass" scroll="{{scroller}}">
+    <ion-content ng-class="appclass" delegate-handle="mainScroll" scroll="false">
         <div class="controls">
             <div class="innerctrl">
-                <button class="button button-icon ion-edit" ></button>
+                <button class="button button-icon ion-edit" ng-click="getpencil();"></button>
                 <button class="button button-icon ion-play" ng-click="changeclass();"></button>
                 <button class="button button-icon ion-stop" ng-click=""></button>
             </div>
         </div>
+        
         <div class="row videoFrame">
             <div class="col">
+           
                 <div class="videoHolder">
-                    <video class="video1" width="100%" height="{{autoHeight}}" controls>
-                     <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
-                        <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
                    
-                    </video>
-                    <!-- <img src="img/record.jpg" class="full-image">-->
-                    <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
-                    <button class="button button-icon ion-play" ng-click="playpause();"></button>
-                    <button class="button button-icon ion-play" ng-click="forward();"></button>
+                    <div class="videosec" style="overflow:hidden;" >
+                        <div id="content" style="position:absolute;" on-swipe="otherswipe();"></div>
+                        <video class="video1" width="100%" height="{{autoHeight}}" >
+                            <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
+                            <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+
+                        </video>
+                    </div>
+
+                    <div class="range">
+                        <input type="range" class="video1seek" ng-model="video1.seek" ng-change="onchangevideo1seek();" name="volume" min="0" max="100">
+                    </div>
+                    <!-- <img src="img/record.jpg" class="full-image"> -->
+                    <div class="row">
+                        <div class="col col-33">
+                            <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                            <button class="button button-icon ion-play" ng-click="playpause();"></button>
+                        </div>
+                        <div class="col col-67">
+                            <div class="range">
+                                <input type="range" class="video1speed" ng-model="video1.speed" ng-change="onchangevideospeed(video1);" name="speed1" min="10" max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                   
                 </div>
             </div>
             <div class="col">
