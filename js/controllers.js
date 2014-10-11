@@ -6,60 +6,69 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {})
 
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate) {
-    
-    //Zoom
-    
+
+    //Pinch Zoom Logic
+
     var newscale = 0;
     var myElement = document.getElementById('myElement');
 
-        var mc = new Hammer.Manager(myElement);
-        var iniscale=1;
-        var webscale=1;
-         // create a pinch and rotate recognizer
-         // these require 2 pointers
-        var pinch = new Hammer.Pinch();
-        var inipoints={x1:0,x2:0,y1:0,y2:0};
-        var disnew=1;
-        var disini=1;
-        mc.add([pinch]);
-//var newscale = 1;
-        mc.on("pinch", function (ev) {
-            var videowidth=$(".video1").width();
-            var videoheight=$(".video1").height();
-            console.log(ev.pointers);
-            var touch=ev.pointers;
-            //myElement.textContent += ev.distance + " ";
-            var newpoints={x1:touch[0].clientX,x2:touch[1].clientX,y1:touch[0].clientY,y2:touch[1].clientY};
-            var mindis=10;
-            if(Math.abs(disnew-disini)<10)
-            {
-                disnew=Math.pow((Math.pow(newpoints.x1-newpoints.x2,2))+(Math.pow(newpoints.y1-newpoints.y2,2)),0.5);
-                //disini=Math.pow((Math.pow(inipoints.x1-inipoints.x2,2))+(Math.pow(inipoints.y1-inipoints.y2,2)),0.5);
-                //$(".video1").css("-webkit-transform","scale("+(disnew/disini)*iniscale+")");
-                if(ev.scale>1)
-                {
-                    $(".video1").css("-webkit-transform","scale("+(iniscale+(ev.scale-1))+")");
-                    webscale=iniscale+(ev.scale-1);
-                }
-                else
-                {
-                    $(".video1").css("-webkit-transform","scale("+(iniscale+(1-ev.scale))+")");
-                    webscale=iniscale+(ev.scale-1);   
-                }
+    var mc = new Hammer.Manager(myElement);
+    var iniscale = 1;
+    var webscale = 1;
+    // create a pinch and rotate recognizer
+    // these require 2 pointers
+    var pinch = new Hammer.Pinch();
+    var inipoints = {
+        x1: 0,
+        x2: 0,
+        y1: 0,
+        y2: 0
+    };
+    var disnew = 1;
+    var disini = 1;
+    mc.add([pinch]);
+    //var newscale = 1;
+    mc.on("pinch", function (ev) {
+        var videowidth = $(".video1").width();
+        var videoheight = $(".video1").height();
+        console.log(ev.pointers);
+        var touch = ev.pointers;
+        //myElement.textContent += ev.distance + " ";
+        var newpoints = {
+            x1: touch[0].clientX,
+            x2: touch[1].clientX,
+            y1: touch[0].clientY,
+            y2: touch[1].clientY
+        };
+        var mindis = 10;
+        if (Math.abs(disnew - disini) < 10) {
+            disnew = Math.pow((Math.pow(newpoints.x1 - newpoints.x2, 2)) + (Math.pow(newpoints.y1 - newpoints.y2, 2)), 0.5);
+            //disini=Math.pow((Math.pow(inipoints.x1-inipoints.x2,2))+(Math.pow(inipoints.y1-inipoints.y2,2)),0.5);
+            //$(".video1").css("-webkit-transform","scale("+(disnew/disini)*iniscale+")");
+            if (ev.scale > 1) {
+                $(".video1").css("-webkit-transform", "scale(" + (iniscale + (ev.scale - 1)) + ")");
+                webscale = iniscale + (ev.scale - 1);
+            } else {
+                $(".video1").css("-webkit-transform", "scale(" + (iniscale + (1 - ev.scale)) + ")");
+                webscale = iniscale + (ev.scale - 1);
             }
-            else 
-            {
-                //iniscale=(disnew/disini);
-                iniscale=webscale;
+        } else {
+            //iniscale=(disnew/disini);
+            iniscale = webscale;
 
-                inipoints={x1:touch[0].clientX,x2:touch[1].clientX,y1:touch[0].clientY,y2:touch[1].clientY};
-                disini=Math.pow((Math.pow(inipoints.x1-inipoints.x2,2))+(Math.pow(inipoints.y1-inipoints.y2,2)),0.5);
-                
-            }
-            
-        });
-    
-    
+            inipoints = {
+                x1: touch[0].clientX,
+                x2: touch[1].clientX,
+                y1: touch[0].clientY,
+                y2: touch[1].clientY
+            };
+            disini = Math.pow((Math.pow(inipoints.x1 - inipoints.x2, 2)) + (Math.pow(inipoints.y1 - inipoints.y2, 2)), 0.5);
+
+        }
+
+    });
+
+
     //Pencil
     var ctx, color = "#000";
     //$ionicSideMenuDelegate.canDragContent(false);
@@ -174,67 +183,68 @@ angular.module('starter.controllers', ['ngCordova'])
             event.preventDefault();
         }, false);
     };
-    
 
-
+    //Video Actions
     $video1 = $(".video1").get(0);
-    
 
+    //Changing Video Speed
     $scope.onchangevideospeed = function (video) {
         $video1.playbackRate = video.speed / 50;
     };
 
+    //Video Seeker
     var changevideo1seeker = function () {
         $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
         //console.log(($video1.currentTime) / ($video1.duration) * 100);
-        $scope.video1.seek=($video1.currentTime) / ($video1.duration) * 100;
+        $scope.video1.seek = ($video1.currentTime) / ($video1.duration) * 100;
         console.log($scope.video1.seek);
+        console.log($video1.currentTime);
     };
+    
+    //caling video seeker function every second.
     $video1.ontimeupdate = changevideo1seeker;
+
+    //To show and hide play and pause button
+    $scope.video1.playpause = false;
+
+    //function called when video ended
+    var videoend = function () {
+        $scope.video1.playpause = false;
+    };
+    $video1.onended = videoend;
+    
     $scope.captureVideo2 = function () {};
 
+    //manually changing video seeker
     $scope.onchangevideo1seek = function () {
         $video1.currentTime = $scope.video1.seek * $video1.duration / 100;
     };
 
-    $scope.playpause = function () {
-        console.log("Video 1 Play");
 
+
+    //play and pause function
+    $scope.playpause = function () {
+        $scope.video1.playpause = !$scope.video1.playpause;
         if ($video1.paused) {
+            //$scope.video1.playpause = true;
+            $video1.playbackRate = 1;
+            $scope.video1.speed = 50;
             $video1.play();
 
         } else {
+            //$scope.video1.playpause = false;
             $video1.pause();
         }
-        //console.log();
     };
 
+    //forward function
     $scope.forward = function () {
         $video1 = $(".video1").get(0);
         var time = $video1.currentTime;
         $video1.currentTime = time + 5;
     };
 
-    $scope.config = {
-        sources: [
-            {
-                src: $sce.trustAsResourceUrl("videogular.mp4"),
-                type: "video/mp4"
-            },
-            {
-                src: $sce.trustAsResourceUrl("videogular.webm"),
-                type: "video/webm"
-            },
-            {
-                src: $sce.trustAsResourceUrl("videogular.ogg"),
-                type: "video/ogg"
-            }
-    ],
-        theme: {
-            url: "styles/themes/default/videogular.css"
-        }
-    };
-
+    //Capture button function
     $scope.captureVideo = function () {
 
         var options = {
