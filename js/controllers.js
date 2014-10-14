@@ -5,7 +5,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {})
 
-.controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate) {
+.controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location) {
 
     $scope.video1 = {};
     var editmode = false;
@@ -309,6 +309,12 @@ angular.module('starter.controllers', ['ngCordova'])
             // An error occured. Show a message to the user
         });
     }
+    
+    //ADD VIDEO
+    $scope.addvideo = function()
+    {
+        $location.path("app/home");
+    };
 })
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture) {

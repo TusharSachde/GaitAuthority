@@ -8,9 +8,9 @@
             <div class="innerctrl" style="z-index: 5; position: relative;">
                 <button class="button button-icon ion-edit video1edit" ng-click="getpencil();"></button>
                 <button class="button button-icon ion-ios7-close video1nonedit" ng-click="getpencil();"></button>
-                <button class="button button-icon ion-ios7-play video1play" ng-click="playpause();"></button>
-                <button class="button button-icon ion-ios7-pause video1pause" ng-click="playpause();"></button>
-                <button class="button button-icon ion-stop" ng-click="resetvideo1();"></button>
+                <!--<button class="button button-icon ion-ios7-play video1play" ng-click="playpause();"></button>
+                <button class="button button-icon ion-ios7-pause video1pause" ng-click="playpause();"></button>-->
+
             </div>
         </div>
         <div class="row videoFrame">
@@ -38,6 +38,7 @@
                             <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
                             <button class="button button-icon ion-play video1play" ng-click="playpause();"></button>
                             <button class="button button-icon ion-ios7-pause video1pause" ng-click="playpause();"></button>
+                            <button class="button button-icon ion-stop" ng-click="resetvideo1();"></button>
                         </div>
                         <div class="col col-67">
                             <div class="range">
@@ -46,7 +47,11 @@
                         </div>
                     </div>
                 </div>
+                <button class="button button-full button-positive" ng-click="addvideo();">
+               Add Video
+            </button>
             </div>
+            
         </div>
     </ion-content>
 </ion-view>

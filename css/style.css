@@ -36,7 +36,8 @@ li {
 .videoFrame {
     text-align: center;
 }
-.videoFrame button {
+.videoFrame button.button-icon
+ {
     font-size: 40px;
 }
 .loginbox {
