@@ -7,32 +7,52 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate) {
 
-   
+    $scope.video1 = {};
+    var editmode = false;
+    $(".video1edit").show();
+    $(".video1nonedit").hide();
 
-      //Pencil
+    //CREATE NEW CANVAS FUNCTION
+    var newCanvas = function () {
+        //define and resize canvas
+
+        $("#content").height($(".video1").height());
+        var canvas = '<canvas id="canvas" width="' + $("#content").width() + '" height="' + ($(".video1").height()) + '"></canvas>';
+        $("#content").html(canvas);
+
+        // setup canvas
+        ctx = document.getElementById("canvas").getContext("2d");
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 5;
+
+        // setup to trigger drawing on mouse or touch
+        $("#canvas").drawTouch();
+        $("#canvas").drawPointer();
+        $("#canvas").drawMouse();
+    };
+
+    //Pencil
     var ctx, color = "#000";
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function () {
-        $ionicSideMenuDelegate.canDragContent(false);
-
-        function newCanvas() {
-            //define and resize canvas
-            $("#content").height($(".video1").height());
-            var canvas = '<canvas id="canvas" width="' + $(".video1").width() + '" height="' + ($(".video1").height()) + '"></canvas>';
-            $("#content").html(canvas);
-
-            // setup canvas
-            ctx = document.getElementById("canvas").getContext("2d");
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 5;
-
-            // setup to trigger drawing on mouse or touch
-            $("#canvas").drawTouch();
-            $("#canvas").drawPointer();
-            $("#canvas").drawMouse();
-
-        }
-        newCanvas();
+        //check if entering edit or non-edit mode
+        if (editmode == true) {
+            //NON-EDIT MODE
+            $(".video1edit").show();
+            $(".video1nonedit").hide();
+            editmode = false;
+            $ionicSideMenuDelegate.canDragContent(true);
+            newCanvas();
+            $("#canvas").hide();
+        } else {
+            //EDIT MODE
+            $(".video1edit").hide();
+            $(".video1nonedit").show();
+            editmode = true;
+            $ionicSideMenuDelegate.canDragContent(false);
+            newCanvas();
+            
+        };
     };
 
     $scope.otherswipe = function () {
@@ -107,9 +127,12 @@ angular.module('starter.controllers', ['ngCordova'])
         $(this).on("mousemove", move);
         $(window).on("mouseup", stop);
     };
+
+
+
     $scope.appclass = "has-header";
     $scope.scroller = false;
-    $scope.video1 = {};
+
     $scope.video1.seek = 0;
     $scope.video1.speed = 50;
     $scope.changeclass = function () {
@@ -123,7 +146,7 @@ angular.module('starter.controllers', ['ngCordova'])
             event.preventDefault();
         }, false);
     };
-    
+
     //Pinch Zoom Logic
 
     var newscale = 0;
@@ -185,7 +208,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     });
 
-   
+
 
     //Video Actions
     $video1 = $(".video1").get(0);
@@ -203,19 +226,23 @@ angular.module('starter.controllers', ['ngCordova'])
         console.log($scope.video1.seek);
         console.log($video1.currentTime);
     };
-    
+
     //caling video seeker function every second.
     $video1.ontimeupdate = changevideo1seeker;
 
     //To show and hide play and pause button
-    $scope.video1.playpause = false;
+    $(".video1play").show();
+    $(".video1pause").hide();
 
     //function called when video ended
     var videoend = function () {
+        console.log("Video Ends");
+        $(".video1pause").hide();
+        $(".video1play").show();
         $scope.video1.playpause = false;
     };
     $video1.onended = videoend;
-    
+
     $scope.captureVideo2 = function () {};
 
     //manually changing video seeker
@@ -227,15 +254,19 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //play and pause function
     $scope.playpause = function () {
-        $scope.video1.playpause = !$scope.video1.playpause;
+        console.log($video1.paused);
         if ($video1.paused) {
+            $(".video1pause").show();
+            $(".video1play").hide();
             //$scope.video1.playpause = true;
             $video1.playbackRate = 1;
             $scope.video1.speed = 50;
             $video1.play();
 
         } else {
-            //$scope.video1.playpause = false;
+
+            $(".video1pause").hide();
+            $(".video1play").show();
             $video1.pause();
         }
     };
@@ -245,6 +276,14 @@ angular.module('starter.controllers', ['ngCordova'])
         $video1 = $(".video1").get(0);
         var time = $video1.currentTime;
         $video1.currentTime = time + 5;
+    };
+
+    //reset video
+    $scope.resetvideo1 = function () {
+        $video1.currentTime = 0;
+        $(".video1pause").hide();
+        $(".video1play").show();
+        $video1.pause();
     };
 
     //Capture button function
