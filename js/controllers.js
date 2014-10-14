@@ -8,6 +8,10 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location) {
 
     $scope.video1 = {};
+
+    //Variable for Video Actions
+    $video1 = $(".video1").get(0);
+
     var editmode = false;
     $(".video1edit").show();
     $(".video1nonedit").hide();
@@ -35,6 +39,9 @@ angular.module('starter.controllers', ['ngCordova'])
     var ctx, color = "#000";
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function () {
+        $video1.pause();
+        $(".video1pause").hide();
+        $(".video1play").show();
         //check if entering edit or non-edit mode
         if (editmode == true) {
             //NON-EDIT MODE
@@ -51,7 +58,7 @@ angular.module('starter.controllers', ['ngCordova'])
             editmode = true;
             $ionicSideMenuDelegate.canDragContent(false);
             newCanvas();
-            
+
         };
     };
 
@@ -210,8 +217,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 
 
-    //Video Actions
-    $video1 = $(".video1").get(0);
+
 
     //Changing Video Speed
     $scope.onchangevideospeed = function (video) {
@@ -309,10 +315,9 @@ angular.module('starter.controllers', ['ngCordova'])
             // An error occured. Show a message to the user
         });
     }
-    
+
     //ADD VIDEO
-    $scope.addvideo = function()
-    {
+    $scope.addvideo = function () {
         $location.path("app/home");
     };
 })
