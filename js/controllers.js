@@ -40,13 +40,14 @@ angular.module('starter.controllers', ['ngCordova'])
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function () {
         $video1.pause();
-        $(".video1pause").hide();
-        $(".video1play").show();
+
         //check if entering edit or non-edit mode
         if (editmode == true) {
             //NON-EDIT MODE
             $(".video1edit").show();
             $(".video1nonedit").hide();
+            $(".video1pause").hide();
+            $(".video1play").show();
             editmode = false;
             $ionicSideMenuDelegate.canDragContent(true);
             newCanvas();
@@ -55,6 +56,8 @@ angular.module('starter.controllers', ['ngCordova'])
             //EDIT MODE
             $(".video1edit").hide();
             $(".video1nonedit").show();
+            $(".video1pause").hide();
+            $(".video1play").hide();
             editmode = true;
             $ionicSideMenuDelegate.canDragContent(false);
             newCanvas();
