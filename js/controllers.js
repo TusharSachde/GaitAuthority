@@ -8,21 +8,27 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location) {
 
     $scope.video1 = {};
+    
 
     //Variable for Video Actions
     $video1 = $(".video1").get(0);
 
-    var editmode = false;
+    $scope.editmode = [false, false, false];
+    /*$scope.editmode.video1 = false;
+    $scope.editmode.comparevideo1 = false;
+    $scope.editmode.comparevideo2 = false;*/
+    console.log($scope.editmode[2]);
+    
     $(".video1edit").show();
     $(".video1nonedit").hide();
 
     //CREATE NEW CANVAS FUNCTION
-    var newCanvas = function () {
+    var newCanvas = function (vid, content, editn) {
         //define and resize canvas
 
-        $("#content").height($(".video1").height());
-        var canvas = '<canvas id="canvas" width="' + $("#content").width() + '" height="' + ($(".video1").height()) + '"></canvas>';
-        $("#content").html(canvas);
+        $(content).height($(vid).height());
+        var canvas = '<canvas id="canvas" width="' + $(content).width() + '" height="' + ($(vid).height()) + '"></canvas>';
+        $(content).html(canvas);
 
         // setup canvas
         ctx = document.getElementById("canvas").getContext("2d");
@@ -38,28 +44,29 @@ angular.module('starter.controllers', ['ngCordova'])
     //Pencil
     var ctx, color = "#000";
     //$ionicSideMenuDelegate.canDragContent(false);
-    $scope.getpencil = function () {
-        $video1.pause();
-        $(".video1pause").hide();
-        $(".video1play").show();
+    $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content) {
+        $vid = $(vid).get(0);
+        $vid.pause();
+        //$video1.pause();
+        $(pausebtn).hide();
+        $(playbtn).show();
 
         //check if entering edit or non-edit mode
-        if (editmode == true) {
+        if ($scope.editmode[editn] == true) {
             //NON-EDIT MODE
-            $(".video1edit").show();
-            $(".video1nonedit").hide();
-
-            editmode = false;
+            $(edit).show();
+            $(nonedit).hide();
+            $scope.editmode[editn] = false;
             $ionicSideMenuDelegate.canDragContent(true);
-            newCanvas();
-            $("#canvas").hide();
+            newCanvas(vid, content, editn);
+            $(content).hide();
         } else {
             //EDIT MODE
-            $(".video1edit").hide();
-            $(".video1nonedit").show();
-            editmode = true;
+            $(edit).hide();
+            $(nonedit).show();
+            $scope.editmode[editn] = true;
             $ionicSideMenuDelegate.canDragContent(false);
-            newCanvas();
+            newCanvas(vid, content, editn);
 
         };
     };
@@ -222,67 +229,83 @@ angular.module('starter.controllers', ['ngCordova'])
 
 
     //Changing Video Speed
-    $scope.onchangevideospeed = function (video) {
-        $video1.playbackRate = video.speed / 50;
+    $scope.onchangevideospeed = function (vid, speed) {
+        var $video = $(vid).get(0);
+        $video.playbackRate = speed / 50;
     };
 
     //Video Seeker
-    var changevideo1seeker = function () {
+    /*var changevideo1seeker = function () {
         $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
         //console.log(($video1.currentTime) / ($video1.duration) * 100);
         $scope.video1.seek = ($video1.currentTime) / ($video1.duration) * 100;
         console.log($scope.video1.seek);
         console.log($video1.currentTime);
-    };
+    };*/
+
+    /*var changecomparevideo1seeker = function () {
+        $vid = $(".comparevideo1").get(0);
+        $(".comparevideo1seek").val(($vid.currentTime) / ($vid.duration) * 100);
+        $scope.comparevideo1.seek = ($vid.currentTime) / ($vid.duration) * 100;
+    };*/
 
     //caling video seeker function every second.
-    $video1.ontimeupdate = changevideo1seeker;
 
-    //To show and hide play and pause button
-    $(".video1play").show();
-    $(".video1pause").hide();
+    //$video1.ontimeupdate = changevideo1seeker;
 
-    //function called when video ended
+    //compare video 2
+    //$(".comparevideo2").get(0).ontimeupdate = changecomparevideo1seeker ;
+
+
+
+    /*    //function called when video ended
     var videoend = function () {
         console.log("Video Ends");
         $(".video1pause").hide();
         $(".video1play").show();
         $scope.video1.playpause = false;
     };
-    $video1.onended = videoend;
+    $video1.onended = videoend;*/
 
     $scope.captureVideo2 = function () {};
 
     //manually changing video seeker
-    $scope.onchangevideo1seek = function () {
-        $video1.currentTime = $scope.video1.seek * $video1.duration / 100;
+    $scope.onchangevideoseek = function (vid, seek) {
+        $video = $(vid).get(0);
+        $video.currentTime = seek * $video.duration / 100;
     };
 
 
 
     //play and pause function
-    $scope.playpause = function () {
-        console.log($video1.paused);
-        if ($video1.paused) {
-            if (editmode == true) {
-                $(".video1edit").show();
-                $(".video1nonedit").hide();
-                newCanvas();
+    $scope.playpause = function (vid, speed, playbtn, pausebtn, editn, editbtn, noneditbtn, content) {
+        var $video = $(vid).get(0);
+        if ($video.paused) {
+            //EDIT OPTIONS
+            if ($scope.editmode[editn] == true) {
+                $(editbtn).show();
+                $(noneditbtn).hide();
+                newCanvas(vid, content, editn);
                 $("#canvas").hide();
-                editmode = false;
+                $scope.editmode[editn] = false;
             };
-            $(".video1pause").show();
-            $(".video1play").hide();
+            //VIDEO BUTTON OPTIONS
+            $(pausebtn).show();
+            $(playbtn).hide();
             //$scope.video1.playpause = true;
-            $video1.playbackRate = 1;
-            $scope.video1.speed = 50;
-            $video1.play();
+            //VIDEO ACTIONS
+            $video.playbackRate = 1;
+            $video.play();
+            //ADJUST SPEED TO NORMAL
+            $(speed).val(50);
+
 
         } else {
-
-            $(".video1pause").hide();
-            $(".video1play").show();
-            $video1.pause();
+            //VIDEO BUTTON ACTIONS
+            $(pausebtn).hide();
+            $(playbtn).show();
+            //VIDEO ACTIONS
+            $video.pause();
         }
     };
 
@@ -294,11 +317,12 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     //reset video
-    $scope.resetvideo1 = function () {
-        $video1.currentTime = 0;
+    $scope.resetvideo = function (vid) {
+        $video = $(vid).get(0);
+        $video.currentTime = 0;
         $(".video1pause").hide();
         $(".video1play").show();
-        $video1.pause();
+        $video.pause();
     };
 
     //Capture button function
@@ -323,12 +347,106 @@ angular.module('starter.controllers', ['ngCordova'])
         }, function (err) {
             // An error occured. Show a message to the user
         });
-    }
+    };
 
     //ADD VIDEO
     $scope.addvideo = function () {
+        $scope.resetvideo(".video1");
+        $video1.playbackRate = 1;
+        $(".video1edit").show();
+        $(".video1nonedit").hide();
+        newCanvas(".video", "#content");
+        $("#canvas").hide();
+        editmode = false;
         $location.path("app/home");
     };
+    //console.log("ng video 1 seek is"+ngvideo1.seek);
+})
+
+//CONTROLLER FOR THE VIDEO IN THE "RECORD" PAGE
+.controller('RecordSeekCtrl', function ($scope, $stateParams) {
+    //To show and hide play and pause button
+    $(".video1play").show();
+    $(".video1pause").hide();
+
+    console.log("SEEK CONTROLLER");
+    $scope.ngvideo1 = {};
+    $video1 = $(".video1").get(0);
+    var video1seekupdate = function () {
+        $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
+        //console.log(($video1.currentTime) / ($video1.duration) * 100);
+        $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+        console.log($scope.ngvideo1.seek);
+        console.log($video1.currentTime);
+    };
+    $video1.ontimeupdate = video1seekupdate;
+
+    //function called when video ended
+    var videoend = function () {
+        console.log("Video Ends");
+        $(".video1pause").hide();
+        $(".video1play").show();
+        $scope.video1.playpause = false;
+    };
+    $video1.onended = videoend;
+})
+
+//CONTROLLER FOR VIDEO 1 IN THE HOME PAGE
+.controller('compare1Ctrl', function ($scope, $stateParams, $cordovaCapture) {
+    //To show and hide play and pause button
+    $(".video1play").show();
+    $(".video1pause").hide();
+
+    console.log("seek contrl");
+    $scope.ngcomparevideo1 = {};
+    $comparevideo1 = $(".comparevideo1").get(0);
+    var comparevideo1seekupdate = function () {
+        $(".comparevideo1seek").val(($comparevideo1.currentTime) / ($comparevideo1.duration) * 100);
+        console.log(($comparevideo1.currentTime) / ($comparevideo1.duration) * 100);
+        $scope.ngcomparevideo1.seek = (($comparevideo1.currentTime) / ($comparevideo1.duration) * 100);
+    };
+    $comparevideo1.ontimeupdate = comparevideo1seekupdate;
+
+    //function called when video ended
+    var videoend = function () {
+        console.log("Video Ends");
+        $(".video1pause").hide();
+        $(".video1play").show();
+        $scope.video1.playpause = false;
+    };
+    $comparevideo1.onended = videoend;
+})
+
+//CONTROLLER FOR VIDEO 2 IN THE HOME PAGE
+.controller('compare2Ctrl', function ($scope, $stateParams, $cordovaCapture) {
+    //To show and hide play and pause button
+    $(".video2play").show();
+    $(".video2pause").hide();
+
+    console.log("seek contrl");
+    $scope.ngcomparevideo2 = {};
+    $comparevideo2 = $(".comparevideo2").get(0);
+    var comparevideo2seekupdate = function () {
+        $(".comparevideo2seek").val(($comparevideo2.currentTime) / ($comparevideo2.duration) * 100);
+        console.log(($comparevideo2.currentTime) / ($comparevideo2.duration) * 100);
+        $scope.ngcomparevideo2.seek = (($comparevideo2.currentTime) / ($comparevideo2.duration) * 100);
+    };
+    $comparevideo2.ontimeupdate = comparevideo2seekupdate;
+
+    //function called when video ended
+    var videoend = function () {
+        console.log("Video Ends");
+        $(".video2pause").hide();
+        $(".video2play").show();
+    };
+    $comparevideo2.onended = videoend;
+})
+
+//Controller to control the edit button at the beggining
+.controller('editbtnCtrl', function ($scope, $stateParams) {
+    console.log("EDIT BUTTON CTRL");
+    $(".video2edit").show();
+    $(".video2nonedit").hide();
 })
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture) {

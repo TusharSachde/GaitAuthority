@@ -5,23 +5,26 @@
 
     <ion-content ng-class="appclass" delegate-handle="mainScroll" scroll="false">
         <div class="controls">
-            <div class="innerctrl">
-                <button class="button button-icon ion-edit" ng-click="getpencil();"></button>
-                <button class="button button-icon ion-play" ng-click="changeclass();"></button>
-                <button class="button button-icon ion-stop" ng-click=""></button>
+            <div class="innerctrl" style="z-index: 5; position: relative;" ng-controller="editbtnCtrl">
+                <button class="button button-icon ion-edit video1edit" ng-click= "getpencil('.comparevideo1','.video1play','.video1pause', 1, '.video1edit', '.video1nonedit', '#content1');"></button>
+                <button class="button button-icon ion-ios7-close video1nonedit" ng-click="getpencil('.comparevideo1','.video1play','.video1pause', 1, '.video1edit', '.video1nonedit', '#content1');"></button>
+                
+                <button class="button button-icon ion-edit video2edit" ng-click= "getpencil('.comparevideo2','.video2play','.video2pause', 2, '.video2edit', '.video2nonedit', '#content2');"></button>
+                <button class="button button-icon ion-ios7-close video2nonedit" ng-click="getpencil('.comparevideo2','.video2play','.video2pause', 2, '.video2edit', '.video2nonedit', '#content2');"></button>
             </div>
         </div>
-        
+
         <div class="row videoFrame">
-           <div class="col">
-           
-                <div class="videoHolder">
-                   <!--<canvas id="flexBox" width="100" height="100"></canvas>-->
-                    <div class="videosec" style="overflow:hidden;" >
-                     <!-- <canvas  id="canvas1" width="200px" height="" style="z-index=2; left=10px" drawing></canvas>
+            <div class="col">
+
+                <div class="videoHolder" ng-controller="compare1Ctrl">
+
+                    <!--<canvas id="flexBox" width="100" height="100"></canvas>-->
+                    <div class="videosec" style="overflow:hidden;">
+                        <!-- <canvas  id="canvas1" width="200px" height="" style="z-index=2; left=10px" drawing></canvas>
          -->
-                        <div id="content" style="position:absolute;" on-swipe="otherswipe();"></div>
-                        <video class="video1" width="100%" height="{{autoHeight}}" >
+                       <div id="content1" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
+                        <video class="comparevideo1" width="100%" height="{{autoHeight}}">
                             <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
                             <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
 
@@ -29,32 +32,57 @@
                     </div>
 
                     <div class="range">
-                        <input type="range" class="video1seek" ng-model="video1.seek" ng-change="onchangevideo1seek();" name="volume" min="0" max="100">
+                        <input type="range" class="comparevideo1seek" ng-model="ngcomparevideo1.seek" ng-change="onchangevideoseek('.comparevideo1', ngcomparevideo1.seek);" name="volume" min="0" max="100">
                     </div>
+
                     <!-- <img src="img/record.jpg" class="full-image"> -->
                     <div class="row">
                         <div class="col col-33">
                             <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
-                            <button ng-show="! video1.playpause" class="button button-icon ion-play" ng-click="playpause();"></button> 
-                            <button ng-show="video1.playpause" class="button button-icon ion-ios7-pause" ng-click="playpause();"></button>
+                            <button class="button button-icon ion-play video1play" ng-click="playpause('.comparevideo1', '.video1speed', '.video1play', '.video1pause', 1, '.video1edit', '.video1nonedit', '#content1');"></button>
+                            <button class="button button-icon ion-ios7-pause video1pause" ng-click="playpause('.comparevideo1', '.video1speed', '.video1play', '.video1pause', 1, '.video1edit', '.video1nonedit', '#content1');"></button>
+                            <button class="button button-icon ion-stop" ng-click="resetvideo('.comparevideo1');"></button>
                         </div>
                         <div class="col col-67">
                             <div class="range">
-                                <input type="range" class="video1speed" ng-model="video1.speed" ng-change="onchangevideospeed(video1);" name="speed1" min="10" max="100">
+                                <input type="range" class="video1speed" ng-model="comparevideo1.speed" ng-change="onchangevideospeed('.comparevideo1', comparevideo1.speed);" name="speed1" min="10" max="100">
                             </div>
                         </div>
                     </div>
 
-                    
-                   
+
+
                 </div>
             </div>
             <div class="col">
 
-                <div class="videoHolder">
-                    <img src="img/record.jpg" class="full-image">
-                    <button class="button button-icon ion-play" ng-click="captureVideo();"></button>
+
+                <div class="videoHolder" ng-controller="compare2Ctrl">
+                    <div class="videosec" style="overflow:hidden;">
+                        <div id="content2" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
+                        <video class="comparevideo2" width="100%" height="{{autoHeight}}">
+                            <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="range">
+                        <input type="range" class="comparevideo2seek" ng-model="ngcomparevideo2.seek" ng-change="onchangevideoseek('.comparevideo2', ngcomparevideo2.seek);" name="volume" min="0" max="100">
+                    </div>
+                    <div class="row">
+                        <div class="col col-33">
+                            <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                            <button class="button button-icon ion-play video2play" ng-click="playpause('.comparevideo2', '.video2speed', '.video2play', '.video2pause', 2, '.video1edit', '.video1nonedit', '#content2');"></button>
+                            <button class="button button-icon ion-ios7-pause video2pause" ng-click="playpause('.comparevideo2', '.video2speed', '.video2play', '.video2pause', 2, '.video1edit', '.video1nonedit', '#content2');"></button>
+                            <button class="button button-icon ion-stop" ng-click="resetvideo('.comparevideo2');"></button>
+                        </div>
+                        <div class="col col-67">
+                            <div class="range">
+                                <input type="range" class="video2speed" ng-model="comparevideo2.speed" ng-change="onchangevideospeed('.comparevideo2', comparevideo2.speed);" name="speed2" min="10" max="100">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </ion-content>
