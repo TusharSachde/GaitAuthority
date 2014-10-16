@@ -8,7 +8,7 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location) {
 
     $scope.video1 = {};
-    
+
 
     //Variable for Video Actions
     $video1 = $(".video1").get(0);
@@ -18,38 +18,51 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.editmode.comparevideo1 = false;
     $scope.editmode.comparevideo2 = false;*/
     console.log($scope.editmode[2]);
-    
+
     $(".video1edit").show();
     $(".video1nonedit").hide();
 
     //CREATE NEW CANVAS FUNCTION
-    var newCanvas = function (vid, content, editn) {
+    var newCanvas = function (vid, content, editn, canvase) {
         //define and resize canvas
-
+        console.log(canvase);
+        if (vid == "both") {
+            vid = ".comparevideo1";
+        };
         $(content).height($(vid).height());
-        var canvas = '<canvas id="canvas" width="' + $(content).width() + '" height="' + ($(vid).height()) + '"></canvas>';
+        var canvas = '<canvas id="' + canvase + '" width="' + $(content).width() + '" height="' + ($(vid).height()) + '"></canvas>';
         $(content).html(canvas);
 
         // setup canvas
-        ctx = document.getElementById("canvas").getContext("2d");
+        ctx = document.getElementById(canvase).getContext("2d");
         ctx.strokeStyle = color;
         ctx.lineWidth = 5;
 
         // setup to trigger drawing on mouse or touch
-        $("#canvas").drawTouch();
-        $("#canvas").drawPointer();
-        $("#canvas").drawMouse();
+        $("#" + canvase).drawTouch();
+        $("#" + canvase).drawPointer();
+        $("#" + canvase).drawMouse();
     };
 
     //Pencil
     var ctx, color = "#000";
     //$ionicSideMenuDelegate.canDragContent(false);
-    $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content) {
-        $vid = $(vid).get(0);
-        $vid.pause();
+    $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
+        if (vid == "both") {
+            $(".comparevideo1").get(0).pause();
+            $(".comparevideo2").get(0).pause();
+            $(".video1play").show();
+            $(".video1pause").hide();
+            $(".video2play").show();
+            $(".video2pause").hide();
+        } else {
+            $vid = $(vid).get(0);
+            $vid.pause();
+            $(pausebtn).hide();
+            $(playbtn).show();
+        };
         //$video1.pause();
-        $(pausebtn).hide();
-        $(playbtn).show();
+
 
         //check if entering edit or non-edit mode
         if ($scope.editmode[editn] == true) {
@@ -58,15 +71,15 @@ angular.module('starter.controllers', ['ngCordova'])
             $(nonedit).hide();
             $scope.editmode[editn] = false;
             $ionicSideMenuDelegate.canDragContent(true);
-            newCanvas(vid, content, editn);
-            $(content).hide();
+            newCanvas(vid, content, editn, canvas);
+            $("#" + canvas).hide();
         } else {
             //EDIT MODE
             $(edit).hide();
             $(nonedit).show();
             $scope.editmode[editn] = true;
             $ionicSideMenuDelegate.canDragContent(false);
-            newCanvas(vid, content, editn);
+            newCanvas(vid, content, editn, canvas);
 
         };
     };
@@ -270,23 +283,39 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.captureVideo2 = function () {};
 
     //manually changing video seeker
-    $scope.onchangevideoseek = function (vid, seek) {
+    $scope.onchangevideoseek = function (vid, seek, editn, editbtn, noneditbtn, content, canvas) {
         $video = $(vid).get(0);
         $video.currentTime = seek * $video.duration / 100;
+
+        //MAKE NEW CANVAS AND HIDE CURRENT CANVAS
+        if ($scope.editmode[editn] == true) {
+            $(editbtn).show();
+            $(noneditbtn).hide();
+            if (editn == 1) {
+                vid = "both";
+            };
+            newCanvas(vid, content, editn, canvas);
+            $("#" + canvas).hide();
+            $scope.editmode[editn] = false;
+        };
+
     };
 
 
 
     //play and pause function
-    $scope.playpause = function (vid, speed, playbtn, pausebtn, editn, editbtn, noneditbtn, content) {
+    $scope.playpause = function (vid, speed, playbtn, pausebtn, editn, editbtn, noneditbtn, content, canvas) {
         var $video = $(vid).get(0);
         if ($video.paused) {
             //EDIT OPTIONS
             if ($scope.editmode[editn] == true) {
                 $(editbtn).show();
                 $(noneditbtn).hide();
-                newCanvas(vid, content, editn);
-                $("#canvas").hide();
+                if (editn == 1) {
+                    vid = "both";
+                };
+                newCanvas(vid, content, editn, canvas);
+                $("#" + canvas).hide();
                 $scope.editmode[editn] = false;
             };
             //VIDEO BUTTON OPTIONS
@@ -355,7 +384,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $video1.playbackRate = 1;
         $(".video1edit").show();
         $(".video1nonedit").hide();
-        newCanvas(".video", "#content");
+        newCanvas(".video", "#content", 0, "canvas");
         $("#canvas").hide();
         editmode = false;
         $location.path("app/home");
