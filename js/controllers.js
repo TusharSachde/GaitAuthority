@@ -346,12 +346,22 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     //reset video
-    $scope.resetvideo = function (vid) {
+    $scope.resetvideo = function (vid, playbtn, pausebtn, editn, editbtn, noneditbtn, content, canvas) {
         $video = $(vid).get(0);
         $video.currentTime = 0;
-        $(".video1pause").hide();
-        $(".video1play").show();
+        $(pausebtn).hide();
+        $(playbtn).show();
         $video.pause();
+        if ($scope.editmode[editn] == true) {
+            $(editbtn).show();
+            $(noneditbtn).hide();
+            if (editn == 1) {
+                vid = "both";
+            };
+            newCanvas(vid, content, editn, canvas);
+            $("#" + canvas).hide();
+            $scope.editmode[editn] = false;
+        };
     };
 
     //Capture button function
@@ -400,6 +410,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     console.log("SEEK CONTROLLER");
     $scope.ngvideo1 = {};
+    $scope.ngvideo1.seek = 0;
     $video1 = $(".video1").get(0);
     var video1seekupdate = function () {
         $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
@@ -422,12 +433,15 @@ angular.module('starter.controllers', ['ngCordova'])
 
 //CONTROLLER FOR VIDEO 1 IN THE HOME PAGE
 .controller('compare1Ctrl', function ($scope, $stateParams, $cordovaCapture) {
+    $scope.ngcomparevideo1 = {};
+    $scope.ngcomparevideo1.seek = 0;
+
     //To show and hide play and pause button
     $(".video1play").show();
     $(".video1pause").hide();
 
     console.log("seek contrl");
-    $scope.ngcomparevideo1 = {};
+
     $comparevideo1 = $(".comparevideo1").get(0);
     var comparevideo1seekupdate = function () {
         $(".comparevideo1seek").val(($comparevideo1.currentTime) / ($comparevideo1.duration) * 100);
@@ -454,6 +468,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
     console.log("seek contrl");
     $scope.ngcomparevideo2 = {};
+    $scope.ngcomparevideo2.seek = 0;
+
     $comparevideo2 = $(".comparevideo2").get(0);
     var comparevideo2seekupdate = function () {
         $(".comparevideo2seek").val(($comparevideo2.currentTime) / ($comparevideo2.duration) * 100);
