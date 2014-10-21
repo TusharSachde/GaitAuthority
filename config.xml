@@ -7,7 +7,7 @@
 		<name>Gait Authority</name>
 		<description>zFlo</description>
 		<author href="www.wohlig.com" email="info@wohlig.com"></author>
-		<preference name="phonegap-version" value="3.5.0" />
+		<preference name="phonegap-version" value="3.6.3" />
 		<preference name="orientation" value="default" />
 		<preference name="fullscreen" value="false" />
 		<preference name="target-device" value="universal" />
