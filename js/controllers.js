@@ -382,6 +382,11 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
             $scope.path = mediaFiles[0].fullPath;
+            var filestart=$scope.path.substr(0,6);
+            if(filestart=="file:/")
+            {
+                $scope.path=$scope.path.substr(6);
+            }
             $scope.$apply();
             console.log($scope.path);
         }, function (err) {
