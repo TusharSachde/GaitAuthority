@@ -382,6 +382,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
             $scope.path = mediaFiles[0].fullPath;
+            $scope.$apply();
             console.log($scope.path);
         }, function (err) {
             // An error occured. Show a message to the user
