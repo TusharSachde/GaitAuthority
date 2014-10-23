@@ -1,6 +1,5 @@
 <ion-view title="Record video">
     <ion-nav-buttons side="left">
-        <img src="img/zFlo.png" alt="" class="zflo">
     </ion-nav-buttons>
 
     <ion-content class="has-header" scroll="false">
@@ -22,7 +21,7 @@
                             <div id="content" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
                             <video class="video1" width="100%" height="{{autoHeight}}">
                                 <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
-                                <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+                                <source src="{{path}}" type="video/mp4">
 
                             </video>
                         </div>

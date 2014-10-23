@@ -1,6 +1,5 @@
 <ion-view title="Login">
     <ion-nav-buttons side="left">
-        <img src="img/zFlo.png" alt="" class="zflo">
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
@@ -12,7 +11,7 @@
             <div class="module">
                 <img src="img/logo.png" class="logo">
                 <input type="text" ng-model="user.email" placeholder="email" class="loginbox">
-                <button class="button button-small button-stable button-go">
+                <button class="button button-small button-stable button-go" ng-click="login();">
                     Go
                 </button>
             </div>

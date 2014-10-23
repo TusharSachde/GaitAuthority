@@ -363,7 +363,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.editmode[editn] = false;
         };
     };
-
+    $scope.path = "";
     //Capture button function
     $scope.captureVideo = function () {
 
@@ -390,13 +390,13 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //ADD VIDEO
     $scope.addvideo = function () {
-        $scope.resetvideo(".video1");
-        $video1.playbackRate = 1;
-        $(".video1edit").show();
-        $(".video1nonedit").hide();
-        newCanvas(".video", "#content", 0, "canvas");
-        $("#canvas").hide();
-        editmode = false;
+//        $scope.resetvideo(".video1");
+//        $video1.playbackRate = 1;
+//        $(".video1edit").show();
+//        $(".video1nonedit").hide();
+//        newCanvas(".video", "#content", 0, "canvas");
+//        $("#canvas").hide();
+//        editmode = false;
         $location.path("app/home");
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
@@ -494,7 +494,11 @@ angular.module('starter.controllers', ['ngCordova'])
     $(".video2nonedit").hide();
 })
 
-.controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture) {
+.controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location) {
     $scope.autoHeight = window.innerHeight - 86;
+    $scope.login = function()
+    {
+        $location.path("app/record");
+    };
 })
     .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture) {});
