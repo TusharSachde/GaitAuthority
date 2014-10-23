@@ -1,4 +1,5 @@
 $video1 = "";
+var video1path = "";
 var video1 = 0;
 
 angular.module('starter.controllers', ['ngCordova'])
@@ -389,6 +390,7 @@ angular.module('starter.controllers', ['ngCordova'])
             }
             $(".myvideocon1").html('<video class="video1" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
             $video1 = $(".video1").get(0);
+            video1path = $scope.path;
             var video1seekupdate = function () {
                 $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
                 //console.log(($video1.currentTime) / ($video1.duration) * 100);
@@ -397,6 +399,16 @@ angular.module('starter.controllers', ['ngCordova'])
             };
 
             $video1.ontimeupdate = video1seekupdate;
+            
+            //function called when video ended
+            var videoend = function () {
+                console.log("Video Ends");
+                $(".video1pause").hide();
+                $(".video1play").show();
+                $scope.video1.playpause = false;
+            };
+            $video1.onended = videoend;
+            
             console.log($scope.path);
         }, function (err) {
             // An error occured. Show a message to the user
@@ -405,14 +417,21 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //ADD VIDEO
     $scope.addvideo = function () {
-        //        $scope.resetvideo(".video1");
-        //        $video1.playbackRate = 1;
-        //        $(".video1edit").show();
-        //        $(".video1nonedit").hide();
-        //        newCanvas(".video", "#content", 0, "canvas");
-        //        $("#canvas").hide();
-        //        editmode = false;
-        $location.path("app/home");
+                $scope.resetvideo(".video1");
+                $video1.playbackRate = 1;
+                $(".video1edit").show();
+                $(".video1nonedit").hide();
+                newCanvas(".video", "#content", 0, "canvas");
+                $("#canvas").hide();
+                editmode = false;
+                var page2 = true;
+                $location.path("app/home");
+        
+    };
+    
+    if(page2 == true)
+    {
+        $(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
 })

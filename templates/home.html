@@ -1,6 +1,9 @@
 <ion-view title="Record videos">
     <ion-nav-buttons side="left">
     </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+       <a class="button button-icon light icon ion-home" href="#/app/record"></a>
+    </ion-nav-buttons>
 
     <ion-content ng-class="appclass" delegate-handle="mainScroll" scroll="false">
         <div class="controls">
@@ -23,11 +26,13 @@
                         <!-- <canvas  id="canvas1" width="200px" height="" style="z-index=2; left=10px" drawing></canvas>
          -->
                        <div id="content1" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
+                        <div class="myvideocon1">
                         <video class="comparevideo1" width="100%" height="{{autoHeight}}">
                             <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
                             <source src="http://www.w3schools.com/tags/movie.mp4" type="video/mp4">
 
                         </video>
+                        </div>
                     </div>
 
                     <div class="range" style="z-index:10;">
