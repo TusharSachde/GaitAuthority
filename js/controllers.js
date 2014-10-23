@@ -414,7 +414,7 @@ angular.module('starter.controllers', ['ngCordova'])
             // An error occured. Show a message to the user
         });
     };
-
+    var page2 = false;
     //ADD VIDEO
     $scope.addvideo = function () {
                 $scope.resetvideo(".video1");
@@ -424,7 +424,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 newCanvas(".video", "#content", 0, "canvas");
                 $("#canvas").hide();
                 editmode = false;
-                var page2 = true;
+                page2 = true;
                 $location.path("app/home");
         
     };
