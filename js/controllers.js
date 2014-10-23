@@ -382,12 +382,14 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
             $scope.path = mediaFiles[0].fullPath;
+            
             var filestart=$scope.path.substr(0,6);
             if(filestart=="file:/")
             {
                 $scope.path=$scope.path.substr(6);
             }
-            $scope.$apply();
+            $(".myvideocon1").html('<video class="video1" width="100%" ><source src="file:///'+$scope.path+'" type="video/mp4"></video>');
+            
             console.log($scope.path);
         }, function (err) {
             // An error occured. Show a message to the user

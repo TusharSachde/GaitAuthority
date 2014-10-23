@@ -18,13 +18,13 @@
                 <div class="videoHolder" ng-controller="RecordSeekCtrl">
                     
                        <div class="videosec" style="overflow:hidden;">
-                            <div id="content" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
-                            <video class="video1" width="100%" height="{{autoHeight}}">
-                                <!--<source src="file:/storage/emulated/0/DCIM/Camera/VID_20141007_095907.mp4" type="video/mp4">-->
-                                <source src="file:///storage/emulated/0/DCIM/Camera/VID_20141023_210605.mp4 " type="video/mp4">
-<!--                                <source src="{{'file:///'+path}}" type="video/mp4">-->
-
-                            </video>
+                            <div id="content"  style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
+                            
+                            <div class="myvideocon1">
+                                <video class="video1" width="100%" height="{{autoHeight}}">
+                                   
+                                </video>
+                            </div>
                            <input value="{{'file:///'+path}}"/>
                         </div>
                         <div class="range">
