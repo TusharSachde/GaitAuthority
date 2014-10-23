@@ -382,14 +382,21 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
             $scope.path = mediaFiles[0].fullPath;
-            
-            var filestart=$scope.path.substr(0,6);
-            if(filestart=="file:/")
-            {
-                $scope.path=$scope.path.substr(6);
+
+            var filestart = $scope.path.substr(0, 6);
+            if (filestart == "file:/") {
+                $scope.path = $scope.path.substr(6);
             }
-            $(".myvideocon1").html('<video class="video1" width="100%" ><source src="file:///'+$scope.path+'" type="video/mp4"></video>');
-            
+            $(".myvideocon1").html('<video class="video1" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+            $video1 = $(".video1").get(0);
+            var video1seekupdate = function () {
+                $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
+                //console.log(($video1.currentTime) / ($video1.duration) * 100);
+                // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+
+            };
+
+            $video1.ontimeupdate = video1seekupdate;
             console.log($scope.path);
         }, function (err) {
             // An error occured. Show a message to the user
@@ -398,13 +405,13 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //ADD VIDEO
     $scope.addvideo = function () {
-//        $scope.resetvideo(".video1");
-//        $video1.playbackRate = 1;
-//        $(".video1edit").show();
-//        $(".video1nonedit").hide();
-//        newCanvas(".video", "#content", 0, "canvas");
-//        $("#canvas").hide();
-//        editmode = false;
+        //        $scope.resetvideo(".video1");
+        //        $video1.playbackRate = 1;
+        //        $(".video1edit").show();
+        //        $(".video1nonedit").hide();
+        //        newCanvas(".video", "#content", 0, "canvas");
+        //        $("#canvas").hide();
+        //        editmode = false;
         $location.path("app/home");
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
@@ -423,11 +430,13 @@ angular.module('starter.controllers', ['ngCordova'])
     var video1seekupdate = function () {
         $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
         //console.log(($video1.currentTime) / ($video1.duration) * 100);
-        $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
-        console.log($scope.ngvideo1.seek);
-        console.log($video1.currentTime);
+        // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+
     };
+
     $video1.ontimeupdate = video1seekupdate;
+
+
 
     //function called when video ended
     var videoend = function () {
@@ -504,8 +513,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location) {
     $scope.autoHeight = window.innerHeight - 86;
-    $scope.login = function()
-    {
+    $scope.login = function () {
         $location.path("app/record");
     };
 })
