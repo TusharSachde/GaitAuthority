@@ -2,7 +2,7 @@
     <ion-nav-buttons side="left">
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <a class="button button-icon light icon ion-home" href="#/app/record"></a>
+        <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
     </ion-nav-buttons>
 
     <ion-content class="has-header" scroll="false">
@@ -19,9 +19,7 @@
 
 
             <div class="col col-50" style="margin:0 auto;">
-               <button class="button button-full button-positive" ng-click="addvideo();">
-                    Add Video
-                </button>
+
                 <div class="videoHolder" ng-controller="RecordSeekCtrl">
 
                     <div class="videosec" style="overflow:hidden;">
@@ -57,9 +55,20 @@
                         </div>
                     </div>
                 </div>
-                <button class="button button-full button-positive" ng-click="addvideo();">
-                    Add Video
-                </button>
+                <div class="row">
+                    <div class="col">
+                        <button class="button button-full button-positive" ng-click="addvideo();">
+                            Add Video
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a href="#/app/exit">
+                            <button class="button button-full button-assertive">
+                                Exit
+                            </button>
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </div>
