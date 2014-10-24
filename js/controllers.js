@@ -1,5 +1,6 @@
 $video1 = "";
 var video1path = "";
+var page2 = false;
 var video1 = 0;
 
 angular.module('starter.controllers', ['ngCordova'])
@@ -414,7 +415,7 @@ angular.module('starter.controllers', ['ngCordova'])
             // An error occured. Show a message to the user
         });
     };
-    var page2 = false;
+    
     //ADD VIDEO
     $scope.addvideo = function () {
                 $scope.resetvideo(".video1");
