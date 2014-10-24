@@ -12,6 +12,11 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.video1 = {};
 
 
+    $scope.exitfunction = function () {
+        $location.path("app/exit");
+    }
+
+
     //Variable for Video Actions
     $video1 = $(".video1").get(0);
 
@@ -379,6 +384,40 @@ angular.module('starter.controllers', ['ngCordova'])
                 if (vidclass == ".video1") {
                     video1path = $scope.path;
                 };
+
+
+                var filestart = $scope.path.substr(0, 6);
+                if (filestart == "file:/") {
+                    $scope.path = $scope.path.substr(6);
+                }
+                $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+
+
+
+                //ON UPDATE AND ON END FUNCTIONS
+                $video1 = $(vidclass).get(0);
+                var video1seekupdate = function () {
+                    $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
+                    //console.log(($video1.currentTime) / ($video1.duration) * 100);
+                    // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+
+                };
+
+                $video1.ontimeupdate = video1seekupdate;
+
+                //function called when video ended
+                var videoend = function () {
+                    $(vidpause).hide();
+                    $(vidplay).show();
+                    $scope.video1.playpause = false;
+                };
+                $video1.onended = videoend;
+
+                console.log($scope.path);
+
+
+
+
             }, function (err) {
                 // An error occured. Show a message to the user
             });
@@ -386,37 +425,42 @@ angular.module('starter.controllers', ['ngCordova'])
         } else {
             $scope.path = video1path;
             page2 = false;
+
+
+            var filestart = $scope.path.substr(0, 6);
+            if (filestart == "file:/") {
+                $scope.path = $scope.path.substr(6);
+            }
+            $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+
+
+
+            //ON UPDATE AND ON END FUNCTIONS
+            $video1 = $(vidclass).get(0);
+            var video1seekupdate = function () {
+                $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
+                //console.log(($video1.currentTime) / ($video1.duration) * 100);
+                // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+
+            };
+
+            $video1.ontimeupdate = video1seekupdate;
+
+            //function called when video ended
+            var videoend = function () {
+                $(vidpause).hide();
+                $(vidplay).show();
+                $scope.video1.playpause = false;
+            };
+            $video1.onended = videoend;
+
+            console.log($scope.path);
+
+
         };
 
 
-        var filestart = $scope.path.substr(0, 6);
-        if (filestart == "file:/") {
-            $scope.path = $scope.path.substr(6);
-        }
-        $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
 
-
-
-        //ON UPDATE AND ON END FUNCTIONS
-        $video1 = $(vidclass).get(0);
-        var video1seekupdate = function () {
-            $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
-            //console.log(($video1.currentTime) / ($video1.duration) * 100);
-            // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
-
-        };
-
-        $video1.ontimeupdate = video1seekupdate;
-
-        //function called when video ended
-        var videoend = function () {
-            $(vidpause).hide();
-            $(vidplay).show();
-            $scope.video1.playpause = false;
-        };
-        $video1.onended = videoend;
-
-        console.log($scope.path);
 
     };
 
