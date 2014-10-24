@@ -431,6 +431,7 @@ angular.module('starter.controllers', ['ngCordova'])
     
     if(page2 == true)
     {
+        console.log(video1path);
         $(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
