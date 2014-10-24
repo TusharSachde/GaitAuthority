@@ -2,7 +2,7 @@
     <ion-nav-buttons side="left">
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-       <a class="button button-icon light icon ion-home" href="#/app/record"></a>
+        <a class="button button-icon light icon ion-home" href="#/app/record"></a>
     </ion-nav-buttons>
 
     <ion-content class="has-header" scroll="false">
@@ -16,28 +16,28 @@
             </div>
         </div>
         <div class="row videoFrame">
-            
+
 
             <div class="col col-50" style="margin:0 auto;">
                <button class="button button-full button-positive" ng-click="addvideo();">
                     Add Video
                 </button>
                 <div class="videoHolder" ng-controller="RecordSeekCtrl">
-                    
-                       <div class="videosec" style="overflow:hidden;">
-                            <div id="content"  style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
-                            
-                            <div class="myvideocon1">
-                                <video class="video1" width="100%" height="{{autoHeight}}">
-                                   
-                                </video>
-                            </div>
-                           
+
+                    <div class="videosec" style="overflow:hidden;">
+                        <div id="content" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
+
+                        <div class="myvideocon1">
+                            <video class="video1" width="100%" height="{{autoHeight}}">
+
+                            </video>
                         </div>
-                        <div class="range">
-                            <input type="range" class="video1seek" ng-model="ngvideo1.seek" ng-change="onchangevideoseek('.video1', ngvideo1.seek,0 ,'.video1edit','.video1nonedit','#content','canvas');" name="volume" min="0" max="100">
-                        </div>
-                   
+
+                    </div>
+                    <div class="range">
+                        <input type="range" class="video1seek" ng-model="ngvideo1.seek" ng-change="onchangevideoseek('.video1', ngvideo1.seek,0 ,'.video1edit','.video1nonedit','#content','canvas');" name="volume" min="0" max="100">
+                    </div>
+
                     <!--  <video id="example_video_1" class="video-js vjs-default-skin"
   controls preload="auto" width="640" height="264"
   >
@@ -45,7 +45,7 @@
  </video>-->
                     <div class="row">
                         <div class="col col-33">
-                            <button class="button button-icon ion-record" ng-click="captureVideo();"></button>
+                            <button class="button button-icon ion-record" ng-click="captureVideo('.myvideocon1', 'video1','.video1','.video1seek','.video1play','.video1pause');"></button>
                             <button class="button button-icon ion-play video1play" ng-click="playpause('.video1', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></button>
                             <button class="button button-icon ion-ios7-pause video1pause" ng-click="playpause('.video1', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></button>
                             <button class="button button-icon ion-stop" ng-click="resetvideo('.video1','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></button>

@@ -367,20 +367,11 @@ angular.module('starter.controllers', ['ngCordova'])
     };
     $scope.path = "";
     //Capture button function
-    $scope.captureVideo = function () {
+    $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
 
         var options = {
-            limit: 1,
-            duration: 15
+            limit: 1
         };
-
-        /*  var captureSuccess = function(mediaFiles) {
-            var path = mediaFiles[0].fullPath;
-            console.log(path);
-        };
-        var captureError = function(error) {
-            console.log("error code"+error);
-        };*/
 
         $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
             $scope.path = mediaFiles[0].fullPath;
@@ -389,49 +380,52 @@ angular.module('starter.controllers', ['ngCordova'])
             if (filestart == "file:/") {
                 $scope.path = $scope.path.substr(6);
             }
-            $(".myvideocon1").html('<video class="video1" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
-            $video1 = $(".video1").get(0);
-            video1path = $scope.path;
+            $(holder).html('<video class="'+vid+'" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+            
+            if (vidclass == ".video1") {
+                video1path = $scope.path;
+            };
+            
+            //ON UPDATE AND ON END FUNCTIONS
+            $video1 = $(vidclass).get(0);
             var video1seekupdate = function () {
-                $(".video1seek").val(($video1.currentTime) / ($video1.duration) * 100);
+                $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
                 //console.log(($video1.currentTime) / ($video1.duration) * 100);
                 // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
 
             };
 
             $video1.ontimeupdate = video1seekupdate;
-            
+
             //function called when video ended
             var videoend = function () {
-                console.log("Video Ends");
-                $(".video1pause").hide();
-                $(".video1play").show();
+                $(vidpause).hide();
+                $(vidplay).show();
                 $scope.video1.playpause = false;
             };
             $video1.onended = videoend;
-            
+
             console.log($scope.path);
         }, function (err) {
             // An error occured. Show a message to the user
         });
     };
-    
+
     //ADD VIDEO
     $scope.addvideo = function () {
-                $scope.resetvideo(".video1");
-                $video1.playbackRate = 1;
-                $(".video1edit").show();
-                $(".video1nonedit").hide();
-                newCanvas(".video", "#content", 0, "canvas");
-                $("#canvas").hide();
-                editmode = false;
-                page2 = true;
-                $location.path("app/home");
-        
+        $scope.resetvideo(".video1");
+        $video1.playbackRate = 1;
+        $(".video1edit").show();
+        $(".video1nonedit").hide();
+        newCanvas(".video", "#content", 0, "canvas");
+        $("#canvas").hide();
+        editmode = false;
+        page2 = true;
+        $location.path("app/home");
+
     };
-    
-    if(page2 == true)
-    {
+
+    if (page2 == true) {
         console.log(video1path);
         $(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');
     };
@@ -533,9 +527,12 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location) {
+    page2 = false;
     $scope.autoHeight = window.innerHeight - 86;
     $scope.login = function () {
         $location.path("app/record");
     };
 })
-    .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture) {});
+    .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture) {
+        page2 = false;
+    });
