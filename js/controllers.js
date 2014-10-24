@@ -370,6 +370,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.editmode[editn] = false;
         };
     };
+    var addvid = false;
     $scope.path = "";
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
@@ -383,6 +384,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 $scope.path = mediaFiles[0].fullPath;
                 if (vidclass == ".video1") {
                     video1path = $scope.path;
+                    addvid = true;
                 };
 
 
