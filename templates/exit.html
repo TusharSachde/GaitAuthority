@@ -9,7 +9,7 @@
             <li class="item item-toggle">
                 Did The Customer Purchase The Shoe?
                 <label class="toggle toggle-balanced">
-                    <input type="checkbox">
+                    <input type="checkbox" ng-model="orderdetails.shoe">
                     <div class="track">
                         <div class="handle"></div>
                     </div>
@@ -18,20 +18,24 @@
             <li class="item item-toggle">
                 Did the Customer Purchase an insole?
                 <label class="toggle toggle-balanced">
-                    <input type="checkbox">
+                    <input type="checkbox" ng-model="orderdetails.insole">
                     <div class="track">
                         <div class="handle"></div>
                     </div>
                 </label>
-                <li>
-                    <label class="item item-input item-stacked-label">
-                        <span class="input-label">Description</span>
-                        <textarea ng-model="membership.address"></textarea>
-                    </label>
-                </li>
+            </li>
+            <li class="item item-toggle">
+                Was it a Premium Sale?
+                <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="orderdetails.premium">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
         </ul>
         <div class="padding">
-            <button class="button button-full button-positive">
+            <button class="button button-full button-positive" ng-click="submitorder();">
                 Submit
             </button>
         </div>

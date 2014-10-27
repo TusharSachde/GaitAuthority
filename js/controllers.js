@@ -2,19 +2,34 @@ $video1 = "";
 var video1path = "";
 var page2 = false;
 var video1 = 0;
+var myconsole=0;
 
+console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {})
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    console.log("abhy");
+    var tablecreate = function () {
+        console.log("abhay");
 
-.controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location) {
+
+    };
+
+
+
+})
+
+.controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location, MyDatabase) {
 
     $scope.video1 = {};
-
+MyDatabase.setwhichshow("record");
 
     $scope.exitfunction = function () {
         $location.path("app/exit");
     }
+    MyDatabase.setsidemenu();
+    console.log(MyDatabase.getsidemenu());
+    myconsole=MyDatabase.getsidemenu();
 
 
     //Variable for Video Actions
@@ -489,7 +504,7 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 //CONTROLLER FOR THE VIDEO IN THE "RECORD" PAGE
-.controller('RecordSeekCtrl', function ($scope, $stateParams) {
+.controller('RecordSeekCtrl', function ($scope, $stateParams, MyDatabase) {
     //To show and hide play and pause button
     $(".video1play").show();
     $(".video1pause").hide();
@@ -582,13 +597,87 @@ angular.module('starter.controllers', ['ngCordova'])
     $(".video2nonedit").hide();
 })
 
-.controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location) {
+.controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
+    user = {};
+    $scope.user = {};
+    $scope.user.email = "";
+    MyDatabase.setwhichshow("login");
+    //OPEN THE DATABASE AND CREATE DB VARIABLE
+
     page2 = false;
     $scope.autoHeight = window.innerHeight - 86;
-    $scope.login = function () {
-        $location.path("app/record");
+
+    //FUNCTION WHEN LOGIN N BUTTON IS PRESSED
+    $scope.login2 = function () {
+
+        //MAKE USER TYPED TEXT LOWER CASE
+        var username = $scope.user.email.toLowerCase();
+
+        //TRANSACTIONS
+        MyDatabase.authenticate(username);
+
+
     };
 })
-    .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture) {
+    .controller('menuCtrl', function ($scope, $stateParams, $cordovaCapture, $location,MyDatabase) {
+        $scope.userinfo = {};
+        $scope.userinfo.totalshoe = 5;
+        $scope.userinfo.totalinsole = 23;
+        $scope.userinfo.totalpremium = 2;
+        console.log("menu");
+        $scope.whichshow=MyDatabase.getwhichshow();
+        $scope.sidemenu=MyDatabase.getsidemenu();
+
+        //OPEN THE DATABASE AND CREATE DB VARIABLE
+        var db = openDatabase('gait', '1.0', 'gait DB', 2 * 1024 * 1024);
+
+        //        //TRANSACTION
+        //        db.transaction(function (ex) {
+        //            console.log(user);
+        //            var sqlstatement1 = "SELECT count(`shoe`) AS `totalshoe` FROM `ENQUIRY` WHERE `shoe`== 1 AND `user` == '" + user.id + "' ";
+        //            console.log(sqlstatement1);
+        //            ex.executeSql(sqlstatement1, [], function (tx, results) {
+        //                console.log(results);
+        //                $scope.userinfo.totalshoe = results.rows.item(0).totalshoe;
+        //
+        //                console.log($scope.userinfo.totalshoe);
+        //                console.log("RAOW INSERTED");
+        //                $location.path("app/record");
+        //            }, null);
+        //
+        //
+        //            //$location.path("app/record");
+        //
+        //        });
+    })
+    .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
+        $scope.orderdetails = {};
+        $scope.orderdetails.shoe = false;
+        $scope.orderdetails.insole = false;
+        $scope.orderdetails.premium = false;
         page2 = false;
+
+        MyDatabase.setsidemenu();
+        
+        $scope.submitorder = function () {
+
+            //CONVERT TRUE/FALSE to 0/1
+            if ($scope.orderdetails.shoe == false) {
+                var shoe = 0
+            } else {
+                shoe = 1
+            };
+            if ($scope.orderdetails.insole == false) {
+                var insole = 0
+            } else {
+                insole = 1
+            };
+            if ($scope.orderdetails.premium == false) {
+                var premium = 0
+            } else {
+                premium = 1
+            };
+
+            MyDatabase.updateenquiry(shoe, insole, premium);          
+        };
     });
