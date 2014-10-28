@@ -2,7 +2,7 @@ $video1 = "";
 var video1path = "";
 var page2 = false;
 var video1 = 0;
-var myconsole=0;
+var myconsole = 0;
 
 console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
@@ -22,14 +22,14 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location, MyDatabase) {
 
     $scope.video1 = {};
-MyDatabase.setwhichshow("record");
+    MyDatabase.setwhichshow("record");
 
     $scope.exitfunction = function () {
         $location.path("app/exit");
     }
     MyDatabase.setsidemenu();
     console.log(MyDatabase.getsidemenu());
-    myconsole=MyDatabase.getsidemenu();
+    myconsole = MyDatabase.getsidemenu();
 
 
     //Variable for Video Actions
@@ -619,14 +619,14 @@ MyDatabase.setwhichshow("record");
 
     };
 })
-    .controller('menuCtrl', function ($scope, $stateParams, $cordovaCapture, $location,MyDatabase) {
+    .controller('menuCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
         $scope.userinfo = {};
         $scope.userinfo.totalshoe = 5;
         $scope.userinfo.totalinsole = 23;
         $scope.userinfo.totalpremium = 2;
         console.log("menu");
-        $scope.whichshow=MyDatabase.getwhichshow();
-        $scope.sidemenu=MyDatabase.getsidemenu();
+        $scope.whichshow = MyDatabase.getwhichshow();
+        $scope.sidemenu = MyDatabase.getsidemenu();
 
         //OPEN THE DATABASE AND CREATE DB VARIABLE
         var db = openDatabase('gait', '1.0', 'gait DB', 2 * 1024 * 1024);
@@ -651,14 +651,26 @@ MyDatabase.setwhichshow("record");
         //        });
     })
     .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
+        $scope.premiumshow = false;
+        $scope.slideclass = 'hidepremium';
         $scope.orderdetails = {};
         $scope.orderdetails.shoe = false;
         $scope.orderdetails.insole = false;
         $scope.orderdetails.premium = false;
+        $scope.premiumchange = function () {
+            $scope.premiumshow = !$scope.premiumshow;
+            if ($scope.premiumshow == true) {
+                $scope.slideclass = 'showpremium';
+            } else {
+                $scope.orderdetails.premium = false;
+                $scope.slideclass = 'hidepremium';
+            };
+        };
+        
         page2 = false;
 
         MyDatabase.setsidemenu();
-        
+
         $scope.submitorder = function () {
 
             //CONVERT TRUE/FALSE to 0/1
@@ -678,6 +690,6 @@ MyDatabase.setwhichshow("record");
                 premium = 1
             };
 
-            MyDatabase.updateenquiry(shoe, insole, premium);          
+            MyDatabase.updateenquiry(shoe, insole, premium);
         };
     });

@@ -36,8 +36,7 @@ li {
 .videoFrame {
     text-align: center;
 }
-.videoFrame button.button-icon
- {
+.videoFrame button.button-icon {
     font-size: 40px;
 }
 .loginbox {
@@ -116,5 +115,25 @@ img.logo {
     -ms-user-select: none;
     /* prevent scrolling in windows phone */
     -ms-touch-action: none;
+}
+.showpremium {
+    -webkit-transition: all linear 0.5s;
+    -moz-transition: all linear 0.5s;
+    -o-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    top: 0px;
+    margin-top: 0;
+    position: relative;
+    z-index: 0;
+}
+.hidepremium {
+    -webkit-transition: all linear 0.5s;
+    -moz-transition: all linear 0.5s;
+    -o-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    top: -53px;
+    margin-top: 0;
+    position: relative;
+    z-index: 0;
 }
 /*end*/

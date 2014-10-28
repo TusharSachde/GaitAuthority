@@ -6,15 +6,26 @@
     </ion-nav-buttons>
     <ion-content class="has-header">
         <ul class="list">
-            <li class="item item-toggle">
+            <li class="item item-toggle" style="z-index: 5;">
                 Did The Customer Purchase The Shoe?
                 <label class="toggle toggle-balanced">
-                    <input type="checkbox" ng-model="orderdetails.shoe">
+                    <input type="checkbox" ng-model="orderdetails.shoe" ng-change="premiumchange()">
                     <div class="track">
                         <div class="handle"></div>
                     </div>
                 </label>
             </li>
+            <di ng-class="slideclass">
+                <li class="item item-toggle" >
+                    Was it a Premium Sale?
+                    <label class="toggle toggle-balanced">
+                        <input type="checkbox" ng-model="orderdetails.premium">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            
             <li class="item item-toggle">
                 Did the Customer Purchase an insole?
                 <label class="toggle toggle-balanced">
@@ -24,15 +35,7 @@
                     </div>
                 </label>
             </li>
-            <li class="item item-toggle">
-                Was it a Premium Sale?
-                <label class="toggle toggle-balanced">
-                    <input type="checkbox" ng-model="orderdetails.premium">
-                    <div class="track">
-                        <div class="handle"></div>
-                    </div>
-                </label>
-            </li>
+            </div>
         </ul>
         <div class="padding">
             <button class="button button-full button-positive" ng-click="submitorder();">
