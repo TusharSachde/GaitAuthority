@@ -508,7 +508,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $video1.playbackRate = 1;
         $(".video1edit").show();
         $(".video1nonedit").hide();
-        newCanvas(".video", "#content", 0, "canvas");
+        newCanvas(".video1", "#content", 0, "canvas");
         $("#canvas").hide();
         editmode = false;
         page2 = true;
@@ -521,10 +521,10 @@ angular.module('starter.controllers', ['ngCordova'])
         $video1.playbackRate = 1;
         $(".video1edit").show();
         $(".video1nonedit").hide();
-        newCanvas(".video", "#content", 0, "canvas");
+        newCanvas(".video2", "#content", 0, "canvas");
         $("#canvas").hide();
         editmode = false;
-        page2 = true;        
+        page3 = true;        
         
         $location.path("app/home");
 
