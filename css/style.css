@@ -140,5 +140,9 @@ img.logo {
     margin-top: 4px;
     width: inherit;
 }
-
+.bottomrowrecord {
+    bottom: 0px;
+    position: fixed;
+    left: 0px;   
+}
 /*end*/
