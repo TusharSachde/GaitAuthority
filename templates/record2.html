@@ -15,6 +15,7 @@
                 </div>
             </div>
             <div class="videosection" style="height:{{autoHeight-93}}px;">
+               <div id="content" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
                 <div class="myvideocon1">
                     <video class="video2" width="100%" height="100%">
 
@@ -30,17 +31,17 @@
                 </div>
                 <div class="addvideo mybutton innercontrols">Add Video</div>
                 <div class="videoplayer innercontrols">
-                    <div class="playerbutton">
-                        <span class="ion-record" ng-click="captureVideo('.myvideocon1', 'video2','.video2','.video1seek','.video1play','.video1pause');"></span>
+                    <div class="playerbutton" ng-click="captureVideo('.myvideocon1', 'video2','.video2','.video1seek','.video1play','.video1pause');">
+                        <span class="ion-record" ></span>
                     </div>
-                    <div class="playerbutton">
-                        <span class="ion-play video1play" ng-click="playpause('.video2', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
+                    <div class="playerbutton  video1play"  ng-click="playpause('.video2', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');">
+                        <span class="ion-play"></span>
                     </div>
-                    <div class="playerbutton">
-                        <span class="ion-ios7-pause video1pause" ng-click="playpause('.video2', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
+                    <div class="playerbutton  video1pause"  ng-click="playpause('.video2', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');">
+                        <span class="ion-ios7-pause"></span>
                     </div>
-                    <div class="playerbutton">
-                        <span class="ion-stop" ng-click="resetvideo('.video2','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
+                    <div class="playerbutton"  ng-click="resetvideo('.video2','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');">
+                        <span class="ion-stop"></span>
                     </div>
                     <div class="playerbutton">
                         <input type="range" class="videospeedchanger video1speed" ng-model="video1.speed" ng-change="onchangevideospeed('.video2', video1.speed);" name="speed1" min="5" max="100">
@@ -50,8 +51,8 @@
                 <div class="innercontrols playerbutton last">
                     <span class="ion-arrow-right-a" ng-click="exitfunction();"></span>
                 </div>
-                <div class="innercontrols playerbutton last">
-                    <span class="ion-clock" ng-click="videospeed('.video2', -0.5);"></span>
+                <div class="innercontrols playerbutton last"  ng-click="videospeed('.video2', -0.5);">
+                    <span class="ion-clock"></span>
                 </div>
             </div>
 
