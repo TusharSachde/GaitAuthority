@@ -1,9 +1,0 @@
-
-                            
-//                            tx.executeSql('SELECT * FROM USERS username == "' + username + '"', [], function (tx, results2) {
-//                                console.log("RAOW SELECTED");
-//                                user.id = results2.rows.item(0).id;
-//                                user.username = results2.rows.item(0).username;
-//                                
-//                                $location.path("/app/record");
-//                            }, null);
