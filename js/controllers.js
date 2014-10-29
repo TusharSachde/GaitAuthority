@@ -25,7 +25,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.video1 = {};
     MyDatabase.setwhichshow("record");
-
+    $scope.autoHeight = window.innerHeight;
     $scope.exitfunction = function () {
         $location.path("app/exit");
     }
@@ -654,7 +654,7 @@ angular.module('starter.controllers', ['ngCordova'])
     //OPEN THE DATABASE AND CREATE DB VARIABLE
 
     page2 = false;
-    $scope.autoHeight = window.innerHeight - 86;
+    $scope.autoHeight = window.innerHeight;
 
     //FUNCTION WHEN LOGIN N BUTTON IS PRESSED
     $scope.login2 = function () {

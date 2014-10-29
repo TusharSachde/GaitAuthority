@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
- body,
+body,
 p,
 h1,
 h2,
@@ -73,7 +73,7 @@ img.logo {
     margin: 0 auto;
 }
 .button.light {
-    color: #bebebe;
+    color: #FFFFFF;
 }
 .videoHolder {
     background: white;
@@ -88,7 +88,7 @@ img.logo {
     color: #aaa;
 }
 .scroll-content {
-    background: #ECECEC;
+    background: #4c4d4e;
 }
 .list li {
     background: white;
@@ -146,3 +146,69 @@ img.logo {
     left: 0px;   
 }
 /*end*/
+.videosection {
+    background:#fff url(../img/playbutton.png) no-repeat center center fixed;
+
+}
+.videocontrols img {
+    height: 50px;
+    width: auto;
+}
+.innercontrols {
+    float:left;
+}
+.videocontrols .mybutton {
+    height: 50px;    
+    color: white;
+    font-weight: 700;
+    padding: 16px;
+}
+.videocontrols .mybutton.addvideo{
+    padding: 16px 50px;
+    height: 50px;
+    background: #00abbd;
+    color: white;
+    font-weight: 700;
+    font-size:150%;
+}
+.videocontrols {
+    background: white;
+}
+.playerbutton {
+    font-size: 50px;
+    padding: 0 15px;
+    float: left;
+}
+.innercontrols.last {
+    float:right;
+}
+input.videospeedchanger {
+    width:270px;
+}
+.videoseeker {
+    background: rgba(126, 127, 131, 0.14);
+    width: 100%;
+    position: absolute;
+    margin-top: -53px;
+    opacity: 0.7;
+}
+
+input.videoseek {
+    margin: 9px 15px;
+    width: 97%;
+}
+.videoeditpencil {
+    position: absolute;
+    width: 100%;
+    text-align: right;
+    font-size: 25px;
+}
+
+
+span.ion-edit {
+    background: #ef2233;
+    padding: 9px;
+    line-height: 42px;
+    color: white;
+    opacity: 0.5;
+}
