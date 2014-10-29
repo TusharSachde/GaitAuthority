@@ -1,8 +1,3 @@
-
-
-
-
-
 <ion-view title="Record Video 1">
     <ion-nav-buttons side="left" ng-controller="menuCtrl">
     </ion-nav-buttons>
@@ -11,45 +6,52 @@
     </ion-nav-buttons>
 
     <ion-content class="has-header" scroll="false">
-        <div  style="height:{{autoHeight}}px">
+        <div style="height:{{autoHeight}}px">
 
             <div>
                 <div class="videoeditpencil">
-                    <span class="ion-edit"></span>
+                    <span class="ion-edit video1edit" ng-click="getpencil('.video1','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
+                    <span class="ion-ios7-close video1nonedit" ng-click="getpencil('.video1','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
                 </div>
             </div>
             <div class="videosection" style="height:{{autoHeight-93}}px;">
+                <div class="myvideocon1">
+                    <video class="video1" width="100%" height="100%">
 
+                    </video>
+                </div>
             </div>
             <div class="videoseeker">
-                <input type="range" class="videoseek">
+                <input type="range" class="videoseek video1seek" ng-model="ngvideo1.seek" ng-change="onchangevideoseek('.video1', ngvideo1.seek,0 ,'.video1edit','.video1nonedit','#content','canvas');" name="volume" min="0" max="100">
             </div>
             <div class="videocontrols clearfix">
-                <div class="logo innercontrols"><img src="img/logo.png" alt=""></div>
+                <div class="logo innercontrols">
+                    <img src="img/logo.png" alt="">
+                </div>
                 <div class="addvideo mybutton innercontrols">Add Video</div>
                 <div class="videoplayer innercontrols">
                     <div class="playerbutton">
-                        <span class="ion-record"></span>
+                        <span class="ion-record" ng-click="captureVideo('.myvideocon1', 'video1','.video1','.video1seek','.video1play','.video1pause');"></span>
                     </div>
                     <div class="playerbutton">
-                        <span class="ion-play"></span>
+                        <span class="ion-play video1play" ng-click="playpause('.video1', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
                     </div>
                     <div class="playerbutton">
-                        <span class="ion-ios7-pause"></span>
+                        <span class="ion-ios7-pause video1pause" ng-click="playpause('.video1', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
                     </div>
                     <div class="playerbutton">
-                        <span class="ion-stop"></span>
+                        <span class="ion-stop" ng-click="resetvideo('.video1','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></span>
                     </div>
                     <div class="playerbutton">
-                        <input type="range" class="videospeedchanger">
+                        <input type="range" class="videospeedchanger video1speed" ng-model="video1.speed" ng-change="onchangevideospeed('.video1', video1.speed);" name="speed1" min="5" max="100">
                     </div>
 
                 </div>
                 <div class="innercontrols playerbutton last">
-                    <span class="ion-arrow-right-a"></span>
+                    <span class="ion-arrow-right-a" ng-click="exitfunction();"></span>
                 </div>
                 <div class="innercontrols playerbutton last">
-                    <span class="ion-clock"></span>
+                    <span class="ion-clock" ng-click="videospeed('.video1', -0.5);"></span>
                 </div>
             </div>
 

@@ -390,11 +390,11 @@ angular.module('starter.controllers', ['ngCordova'])
     var addvid = false;
     var addvid2 = false;
     $scope.path = "";
-    
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////THIS FUNCTION ALSO MANAGES DURING CHANGING BETWEEN PAGES/////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
 
@@ -453,10 +453,9 @@ angular.module('starter.controllers', ['ngCordova'])
             });
 
         } else {
-            if(holder == ".myvideocon1")
-            {
+            if (holder == ".myvideocon1") {
                 $scope.path = video1path;
-            }else {
+            } else {
                 $scope.path = video2path;
             };
             page2 = false;
@@ -476,8 +475,8 @@ angular.module('starter.controllers', ['ngCordova'])
             $video1.play();
             $(vidpause).show();
             $(vidplay).hide();
-            
-            
+
+
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
                 $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
@@ -500,10 +499,16 @@ angular.module('starter.controllers', ['ngCordova'])
 
 
         };
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////
 
+        $scope.videospeed = function (vid, val) {
+            var $video = $(vid).get(0);
+            if ($video.playbackRate > 0.5 && $video.playbackRate < 1.5) {
+                $video.playbackRate = $video.playbackRate + val;
+            };
+        };
 
 
     };
@@ -530,12 +535,12 @@ angular.module('starter.controllers', ['ngCordova'])
         newCanvas(".video2", "#content", 0, "canvas");
         $("#canvas").hide();
         editmode = false;
-        page3 = true;        
-        
+        page3 = true;
+
         $location.path("app/home");
 
     };
-    
+
 
     if (page2 == true) {
         console.log(video1path);
@@ -646,7 +651,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
     $.jStorage.flush();
-    
+
     user = {};
     $scope.user = {};
     $scope.user.email = "";
@@ -716,7 +721,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 $scope.slideclass = 'hidepremium';
             };
         };
-        
+
         page2 = false;
 
         MyDatabase.setsidemenu();
