@@ -469,10 +469,16 @@ angular.module('starter.controllers', ['ngCordova'])
             }
             $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
 
-
-
-            //ON UPDATE AND ON END FUNCTIONS
+            //SET VIDEO OBJECT
             $video1 = $(vidclass).get(0);
+
+            //PLAY VIDEO
+            $video1.play();
+            $(vidpause).show();
+            $(vidplay).hide();
+            
+            
+            //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
                 $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
                 //console.log(($video1.currentTime) / ($video1.duration) * 100);
