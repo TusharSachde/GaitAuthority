@@ -1,6 +1,8 @@
 $video1 = "";
 var video1path = "";
+var video2path = "";
 var page2 = false;
+var page3 = false;
 var video1 = 0;
 var myconsole = 0;
 
@@ -386,7 +388,13 @@ angular.module('starter.controllers', ['ngCordova'])
         };
     };
     var addvid = false;
+    var addvid2 = false;
     $scope.path = "";
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////THIS FUNCTION ALSO MANAGES DURING CHANGING BETWEEN PAGES/////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
 
@@ -397,11 +405,16 @@ angular.module('starter.controllers', ['ngCordova'])
 
             $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
                 $scope.path = mediaFiles[0].fullPath;
+                //////STORING PATH FOR FUTURE USE/////
                 if (vidclass == ".video1") {
                     video1path = $scope.path;
                     addvid = true;
                 };
-
+                if (vidclass == ".video2") {
+                    video2path = $scope.path;
+                    addvid2 = true;
+                };
+                /////////////////////////////////
 
                 var filestart = $scope.path.substr(0, 6);
                 if (filestart == "file:/") {
@@ -440,8 +453,14 @@ angular.module('starter.controllers', ['ngCordova'])
             });
 
         } else {
-            $scope.path = video1path;
+            if(holder == ".myvideocon1")
+            {
+                $scope.path = video1path;
+            }else {
+                $scope.path = video2path;
+            };
             page2 = false;
+            page3 = false;
 
 
             var filestart = $scope.path.substr(0, 6);
@@ -475,13 +494,15 @@ angular.module('starter.controllers', ['ngCordova'])
 
 
         };
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
     };
 
-    //ADD VIDEO
+    //ADD VIDEO 2
     $scope.addvideo = function () {
         $scope.resetvideo(".video1");
         $video1.playbackRate = 1;
@@ -491,14 +512,34 @@ angular.module('starter.controllers', ['ngCordova'])
         $("#canvas").hide();
         editmode = false;
         page2 = true;
+        $location.path("app/record2");
+
+    };
+    //GO TO COMPARE PAGE
+    $scope.comparevideo = function () {
+        $scope.resetvideo(".video2");
+        $video1.playbackRate = 1;
+        $(".video1edit").show();
+        $(".video1nonedit").hide();
+        newCanvas(".video", "#content", 0, "canvas");
+        $("#canvas").hide();
+        editmode = false;
+        page2 = true;        
+        
         $location.path("app/home");
 
     };
+    
 
     if (page2 == true) {
         console.log(video1path);
         /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
         $scope.captureVideo(".myvideocon1", "comparevideo1", ".comparevideo1", ".comparevideo1seek", ".video1play", ".video1pause");
+    };
+    if (page3 == true) {
+        console.log(video2path);
+        /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
+        $scope.captureVideo(".myvideocon2", "comparevideo2", ".comparevideo2", ".comparevideo2seek", ".video2play", ".video2pause");
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
 })
@@ -598,6 +639,8 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
+    $.jStorage.flush();
+    
     user = {};
     $scope.user = {};
     $scope.user.email = "";

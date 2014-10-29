@@ -21,6 +21,7 @@ var mydatabase = angular.module('mydatabase', [])
         };
         var users = [];
         var enquiry = [];
+        user = $.jStorage.get("user");
         db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM USERS', [], function (tx, results) {
 
@@ -71,6 +72,7 @@ var mydatabase = angular.module('mydatabase', [])
                         console.log(users[i]);
                         usernotpresent = false;
                         user = users[i];
+                        $.jStorage.set("user", user);
                         window.location.replace(window.location.origin + window.location.pathname + "#/app/record");
                     }
 
@@ -85,6 +87,7 @@ var mydatabase = angular.module('mydatabase', [])
                                 //SEARCH IF USER EXISTS
                                 tx2.executeSql('SELECT * FROM USERS WHERE `username`="' + username + '"', [], function (tx2, results2) {
                                     user = results2.rows.item(0);
+                                    $.jStorage.set("user", user);
                                     users.push(user);
                                     console.log("Row INSERTED");
                                     window.location.replace(window.location.origin + window.location.pathname + "#/app/record");

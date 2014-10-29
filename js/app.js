@@ -59,6 +59,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'
       }
     });
     
-    $urlRouterProvider.otherwise('/app/loginpage');
+    $urlRouterProvider.otherwise('/app/record');
 });
 
