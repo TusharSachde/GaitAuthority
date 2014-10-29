@@ -654,11 +654,12 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.login2 = function () {
 
         //MAKE USER TYPED TEXT LOWER CASE
-        var username = $scope.user.email.toLowerCase();
+        //var username = $scope.user.email.toLowerCase();
 
         //TRANSACTIONS
-        MyDatabase.authenticate(username);
-
+        //MyDatabase.authenticate(username);
+        //REMOVED FROM SERVICES
+        window.location.replace(window.location.origin + window.location.pathname + "#/app/record");
 
     };
 })
