@@ -40,6 +40,15 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'
         }
       }
     })
+  .state('app.record2', {
+      url: "/record2",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/record2.html",
+          controller: 'HomeCtrl'
+        }
+      }
+    })
     .state('app.loginpage', {
       url: "/loginpage",
       views: {
