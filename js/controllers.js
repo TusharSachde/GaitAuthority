@@ -660,14 +660,14 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //FUNCTION WHEN LOGIN N BUTTON IS PRESSED
     $scope.login2 = function () {
-
+        MyDatabase.authenticate("user");
         //MAKE USER TYPED TEXT LOWER CASE
         //var username = $scope.user.email.toLowerCase();
 
         //TRANSACTIONS
         //MyDatabase.authenticate(username);
         //REMOVED FROM SERVICES
-        window.location.replace(window.location.origin + window.location.pathname + "#/app/record");
+        
 
     };
 })
@@ -725,7 +725,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $scope.submitorder = function () {
 
-            /*//CONVERT TRUE/FALSE to 0/1
+            //CONVERT TRUE/FALSE to 0/1
             if ($scope.orderdetails.shoe == false) {
                 var shoe = 0
             } else {
@@ -742,7 +742,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 premium = 1
             };
 
-            MyDatabase.updateenquiry(shoe, insole, premium);*/
-            window.location.replace(window.location.origin + window.location.pathname + "#/app/loginpage");
+            MyDatabase.updateenquiry(shoe, insole, premium);
+            //window.location.replace(window.location.origin + window.location.pathname + "#/app/loginpage");
         };
     });

@@ -1,11 +1,13 @@
 var db = openDatabase('gait', '1.0', 'gait DB', 2 * 1024 * 1024);
 
+
 db.transaction(function (tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS USERS (id Integer PRIMARY KEY AUTOINCREMENT, username)');
     tx.executeSql('CREATE TABLE IF NOT EXISTS ENQUIRY (id Integer PRIMARY KEY AUTOINCREMENT, shoe Integer, insole Integer, premium Integer, user Integer)');
     //tx.executeSql('DROP TABLE USERS');
     //tx.executeSql('DROP TABLE ENQUIRY');
 });
+
 var user = {};
 
 
@@ -40,6 +42,7 @@ var mydatabase = angular.module('mydatabase', [])
                 console.log(enquiry);
             }, null);
         });
+        
 
 
         return {
@@ -98,6 +101,7 @@ var mydatabase = angular.module('mydatabase', [])
 
                         }, null);
                     });
+                    
                 }
 
 
