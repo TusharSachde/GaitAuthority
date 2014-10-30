@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
-body,
+ body,
 p,
 h1,
 h2,
@@ -96,7 +96,7 @@ img.logo {
 /*Icon colors*/
 
 .ion-edit {
-    color: #4DC0C0;
+    color: #737373;
 }
 .ion-record {
     color: #FA4E4E;
@@ -143,33 +143,33 @@ img.logo {
 .bottomrowrecord {
     bottom: 0px;
     position: fixed;
-    left: 0px;   
+    left: 0px;
 }
 /*end*/
-.videosection {
-    background:#fff url(../img/playbutton.png) no-repeat center center fixed;
 
+.videosection {
+    background: #fff url(../img/playbutton.png) no-repeat center center fixed;
 }
 .videocontrols img {
     height: 50px;
     width: auto;
 }
 .innercontrols {
-    float:left;
+    float: left;
 }
 .videocontrols .mybutton {
-    height: 50px;    
+    height: 50px;
     color: white;
     font-weight: 700;
     padding: 16px;
 }
-.videocontrols .mybutton.addvideo{
+.videocontrols .mybutton.addvideo {
     padding: 16px 50px;
     height: 50px;
     background: #00abbd;
     color: white;
     font-weight: 700;
-    font-size:150%;
+    font-size: 150%;
 }
 .videocontrols {
     background: white;
@@ -180,10 +180,10 @@ img.logo {
     float: left;
 }
 .innercontrols.last {
-    float:right;
+    float: right;
 }
 input.videospeedchanger {
-    width:270px;
+    width: 270px;
 }
 .videoseeker {
     background: rgba(126, 127, 131, 0.14);
@@ -192,7 +192,6 @@ input.videospeedchanger {
     margin-top: -53px;
     opacity: 0.7;
 }
-
 input.videoseek {
     margin: 9px 15px;
     width: 97%;
@@ -203,12 +202,14 @@ input.videoseek {
     text-align: right;
     font-size: 25px;
 }
-
-
 span.ion-edit {
     background: #ef2233;
     padding: 9px;
     line-height: 42px;
     color: white;
     opacity: 0.5;
+}
+.edit-holder {
+    background: #FFC6C1;
+    float: right;
 }

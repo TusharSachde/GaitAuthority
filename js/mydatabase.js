@@ -47,9 +47,9 @@ var mydatabase = angular.module('mydatabase', [])
                 return sidemenu;
             },
             setsidemenu: function (shoesale, insolesale, premiumsale) {
-                /*sidemenu.insolesale = insolesale;
+                sidemenu.insolesale = insolesale;
                 sidemenu.premiumsale = premiumsale;
-                sidemenu.shoesale = shoesale;*/
+                sidemenu.shoesale = shoesale;
 
                 db.transaction(function (tx) {
                     console.log("SELECT count(*) AS `totalshoe` FROM `ENQUIRY` WHERE `shoe`= '1' AND `user` = '" + user.id + "' ");
@@ -57,6 +57,7 @@ var mydatabase = angular.module('mydatabase', [])
                     tx.executeSql("SELECT count(*) AS `totalshoe` FROM `ENQUIRY` WHERE `shoe`= '1' AND `user` = '" + user.id + "' ", [], function (tx, results) {
                         sidemenu.shoesale = results.rows.item(0).totalshoe;
                     }, null);
+
                     tx.executeSql("SELECT count(*) AS `totalinsole` FROM `ENQUIRY` WHERE `insole`= '1' AND `user` = '" + user.id + "' ", [], function (tx, results1) {
                         sidemenu.insolesale = results1.rows.item(0).totalinsole;
                     }, null);
@@ -65,6 +66,7 @@ var mydatabase = angular.module('mydatabase', [])
                     }, null);
                 });
             },
+
             authenticate: function (username) {
                 usernotpresent = true;
                 for (var i = 0; i < users.length; i++) {

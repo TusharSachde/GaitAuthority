@@ -43,8 +43,7 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.editmode.comparevideo2 = false;*/
     console.log($scope.editmode[2]);
 
-    $(".video1edit").show();
-    $(".video1nonedit").hide();
+
 
     //CREATE NEW CANVAS FUNCTION
     var newCanvas = function (vid, content, editn, canvase) {
