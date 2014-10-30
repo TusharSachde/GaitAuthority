@@ -1,7 +1,11 @@
 /* Empty. Add your own CSS if you like */
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
- body,
+@font-face {
+    font-family: 'Goudy old';
+    src: url(goudy-old-style-extra-bold-bt.ttf);
+}
+body,
 p,
 h1,
 h2,
@@ -95,18 +99,6 @@ img.logo {
 }
 /*Icon colors*/
 
-.ion-edit {
-    color: #737373;
-}
-.ion-record {
-    color: #FA4E4E;
-}
-.ion-play {
-    color: #5B7FF1;
-}
-.ion-stop {
-    color: #F66A5E;
-}
 .appclass {
     /* prevent text selection on ui */
     user-select: none;
@@ -164,12 +156,16 @@ img.logo {
     padding: 16px;
 }
 .videocontrols .mybutton.addvideo {
-    padding: 16px 50px;
+    padding: 5px 50px;
     height: 50px;
-    background: #00abbd;
+    background: #B32726;
     color: white;
-    font-weight: 700;
-    font-size: 150%;
+    font-family: 'Goudy old';
+    text-transform: uppercase;
+    font-size: 16px;
+    border: none;
+    border-radius: 0px;
+    text-shadow: none !important;
 }
 .videocontrols {
     background: white;
@@ -212,4 +208,28 @@ span.ion-edit {
 .edit-holder {
     background: #FFC6C1;
     float: right;
+}
+.button {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.30) !important;
+    -webkit-transition: all 300ms ease;
+}
+.button:hover {
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.30) !important;
+}
+.bar.bar-stable {
+    border-color: #E02B1C;
+    background-color: #ef3323;
+    background: #ef3323;
+    color: #FFF;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+}
+h1.title {
+    font-family: 'Goudy old' !important;
+    text-transform: uppercase;
+}
+.bar-stable .button {
+    color: #FFF;
+}
+.videocontrols .button.button-icon.icon {
+    color: #00ABBD;
 }
