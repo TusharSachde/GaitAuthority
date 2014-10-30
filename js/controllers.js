@@ -3,6 +3,8 @@ var video1path = "";
 var video2path = "";
 var page2 = false;
 var page3 = false;
+/*var page2 = true;
+var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
 
@@ -10,7 +12,7 @@ console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-   
+
 
 
 
@@ -454,26 +456,25 @@ angular.module('starter.controllers', ['ngCordova'])
                 $scope.path = video2path;
                 page3 = false;
             };
-            
+
             var filestart = $scope.path.substr(0, 6);
             if (filestart == "file:/") {
                 $scope.path = $scope.path.substr(6);
             }
             $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+            /*$(holder).html('<video class="' + vid + '" width="100%" ><source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video>');*/
 
             //SET VIDEO OBJECT
             $video1 = $(vidclass).get(0);
 
             //PLAY VIDEO
-            $video1.play();
-            $(vidpause).show();
-            $(vidplay).hide();
+            $video1.currentTime = 0.5;
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
                 $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
                 //console.log(($video1.currentTime) / ($video1.duration) * 100);
-                // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+                //$scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
 
             };
 
@@ -497,8 +498,12 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $scope.videospeed = function (vid, val) {
             var $video = $(vid).get(0);
-            if ($video.playbackRate > 0.5 && $video.playbackRate < 1.5) {
-                $video.playbackRate = $video.playbackRate + val;
+            
+            if($video.playbackRate == 0.4)
+            {
+                $video.playbackRate = 1;
+            }else{
+                $video.playbackRate = 0.4;
             };
         };
 
@@ -533,7 +538,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     };
 
-
+    //$scope.captureVideo(".myvideocon1", "video1", ".video1", ".video1seek", ".video1play", ".video1pause");
     if (page2 == true && page3 == true) {
         console.log(video1path);
         /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
