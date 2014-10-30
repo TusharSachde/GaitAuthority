@@ -461,6 +461,7 @@ angular.module('starter.controllers', ['ngCordova'])
             if (filestart == "file:/") {
                 $scope.path = $scope.path.substr(6);
             }
+            console.log($scope.path);
             $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
             /*$(holder).html('<video class="' + vid + '" width="100%" ><source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video>');*/
 
@@ -570,9 +571,7 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $video1.ontimeupdate = video1seekupdate;
-
-
-
+    
     //function called when video ended
     var videoend = function () {
         console.log("Video Ends");
