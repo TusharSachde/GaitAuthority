@@ -449,13 +449,12 @@ angular.module('starter.controllers', ['ngCordova'])
         } else {
             if (holder == ".myvideocon1") {
                 $scope.path = video1path;
+                page2 = false;
             } else {
                 $scope.path = video2path;
+                page3 = false;
             };
-            page2 = false;
-            page3 = false;
-
-
+            
             var filestart = $scope.path.substr(0, 6);
             if (filestart == "file:/") {
                 $scope.path = $scope.path.substr(6);
@@ -469,7 +468,6 @@ angular.module('starter.controllers', ['ngCordova'])
             $video1.play();
             $(vidpause).show();
             $(vidplay).hide();
-
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
