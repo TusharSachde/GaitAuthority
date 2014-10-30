@@ -141,6 +141,7 @@ img.logo {
 
 .videosection {
     background: #fff url(../img/playbutton.png) no-repeat center center fixed;
+overflow: hidden;
 }
 .videocontrols img {
     height: 50px;

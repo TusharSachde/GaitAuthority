@@ -1,4 +1,4 @@
-<ion-view title="Record Video 2">
+<ion-view title="Record Video">
     <ion-nav-buttons side="left" ng-controller="menuCtrl">
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
@@ -10,11 +10,6 @@
     <ion-content class="has-header" scroll="false">
         <div style="height:{{autoHeight}}px">
 
-            <div class="edit-holder">
-
-
-
-            </div>
             <div class="videosection" style="height:{{autoHeight-93}}px;">
                 <div id="content" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
                 <div class="myvideocon1">
@@ -36,10 +31,8 @@
                     <button class="button button-icon icon ion-play video1play" ng-click="playpause('.video1', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></button>
                     <button class="button button-icon icon ion-ios7-pause video1pause" style="display:none" ng-click="playpause('.video1', '.video1speed','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></button>
                     <button class="button button-icon icon ion-stop" ng-click="resetvideo('.video1','.video1play','.video1pause', 0, '.video1edit', '.video1nonedit','#content','canvas');"></button>
-
-                    <div class="playerbutton">
-                        <input type="range" class="videospeedchanger video1speed" ng-model="video1.speed" ng-change="onchangevideospeed('.video1', video1.speed);" name="speed1" min="5" max="100">
-                    </div>
+<input type="range" class="videospeedchanger video1speed" ng-model="video1.speed" ng-change="onchangevideospeed('.video1', video1.speed);" name="speed1" min="5" max="100">
+                   
 
 
 
