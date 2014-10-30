@@ -451,9 +451,10 @@ angular.module('starter.controllers', ['ngCordova'])
         } else {
             if (holder == ".myvideocon1") {
                 $scope.path = video1path;
-                page2 = false;
+                
             } else {
                 $scope.path = video2path;
+                page2 = false;
                 page3 = false;
             };
 
@@ -540,15 +541,13 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     //$scope.captureVideo(".myvideocon1", "video1", ".video1", ".video1seek", ".video1play", ".video1pause");
-    if (page2 == true && page3 == true) {
+    if (page3 == true) {
         console.log("CALLING FIRST VIDEO IN COMPARE");
         console.log(video1path);
-        /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
         $scope.captureVideo(".myvideocon1", "comparevideo1", ".comparevideo1", ".comparevideo1seek", ".video1play", ".video1pause");
         
         console.log("CALLING SECOND VIDEO IN COMPARE");
         console.log(video2path);
-        /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
         $scope.captureVideo(".myvideocon2", "comparevideo2", ".comparevideo2", ".comparevideo2seek", ".video2play", ".video2pause");
     };
     if (page3 == true) {
