@@ -10,12 +10,7 @@ console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
-    console.log("abhy");
-    var tablecreate = function () {
-        console.log("abhay");
-
-
-    };
+   
 
 
 
@@ -68,7 +63,7 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     //Pencil
-    var ctx, color = "#000";
+    var ctx, color = "#ef3323";
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
         if (vid == "both") {
@@ -397,7 +392,7 @@ angular.module('starter.controllers', ['ngCordova'])
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
 
-        if (page2 == false) {
+        if (page2 == false || page3 == false) {
             var options = {
                 limit: 1
             };
@@ -531,7 +526,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $video1.playbackRate = 1;
         $(".video1edit").show();
         $(".video1nonedit").hide();
-        newCanvas(".video2", "#content", 0, "canvas");
+        newCanvas(".video2", "#content", 2, "canvas");
         $("#canvas").hide();
         editmode = false;
         page3 = true;
@@ -541,12 +536,12 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
 
-    if (page2 == true) {
+    if (page2 == true && page3 == true) {
         console.log(video1path);
         /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
         $scope.captureVideo(".myvideocon1", "comparevideo1", ".comparevideo1", ".comparevideo1seek", ".video1play", ".video1pause");
     };
-    if (page3 == true) {
+    if (page3 == true && page2 == true) {
         console.log(video2path);
         /*$(".myvideocon1").html('<video class="comparevideo1" width="100%" ><source src="file:///' + video1path + '" type="video/mp4"></video>');*/
         $scope.captureVideo(".myvideocon2", "comparevideo2", ".comparevideo2", ".comparevideo2seek", ".video2play", ".video2pause");
@@ -727,7 +722,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $scope.submitorder = function () {
 
-            //CONVERT TRUE/FALSE to 0/1
+            /*//CONVERT TRUE/FALSE to 0/1
             if ($scope.orderdetails.shoe == false) {
                 var shoe = 0
             } else {
@@ -744,6 +739,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 premium = 1
             };
 
-            MyDatabase.updateenquiry(shoe, insole, premium);
+            MyDatabase.updateenquiry(shoe, insole, premium);*/
+            window.location.replace(window.location.origin + window.location.pathname + "#/app/loginpage");
         };
     });
