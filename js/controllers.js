@@ -468,7 +468,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $video1 = $(vidclass).get(0);
 
             //PLAY VIDEO
-            $video1.currentTime = 0.5;
+            //$video1.currentTime = 0.5;
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
