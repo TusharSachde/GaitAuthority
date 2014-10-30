@@ -226,6 +226,7 @@ span.ion-edit {
 h1.title {
     font-family: 'Parker' !important;
     text-transform: uppercase;
+    font-size: 25px !important;
 }
 .bar-stable .button {
     color: #FFF;
