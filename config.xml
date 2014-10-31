@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.gait.authority" versionCode="1" version="1.0.0">
-    <name>Gait Authority</name>
+    <name>Fit Lab</name>
     <description>zFlo</description>
     <author href="www.wohlig.com" email="info@wohlig.com"></author>
 
