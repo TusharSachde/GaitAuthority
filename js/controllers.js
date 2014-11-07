@@ -20,6 +20,13 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('HomeCtrl', function ($scope, $sce, $stateParams, $cordovaCapture, $ionicSideMenuDelegate, $ionicScrollDelegate, $location, MyDatabase) {
 
+    //$scope.vidplength1 = 0;
+    //$scope.vidplength2 = 0;
+    
+    //var vid1 = $(".comparevideo1").get(0); 
+    //$scope.vidplength1 = vid1.
+    //$scope.vidplength1 = vid1.duration
+    
     $scope.video1 = {};
     MyDatabase.setwhichshow("record");
     $scope.autoHeight = window.innerHeight-20;
@@ -320,6 +327,31 @@ angular.module('starter.controllers', ['ngCordova'])
         };
 
     };
+    
+    $scope.onbothvideoseek = function (vid1, vid2, vid1seek, vid2seek, seek, editn, editbtn, noneditbtn, content, canvas) {
+        $video1 = $(vid1).get(0);
+        $video2 = $(vid2).get(0);
+        
+        $video1.currentTime = seek * $video1.duration / 100;
+        $video2.currentTime = seek * $video2.duration / 100;
+        
+        $(vid1seek).val(seek);
+        $(vid2seek).val(seek);
+        
+
+        //MAKE NEW CANVAS AND HIDE CURRENT CANVAS
+        if ($scope.editmode[editn] == true) {
+            $(editbtn).show();
+            $(noneditbtn).hide();
+            if (editn == 1) {
+                vid = "both";
+            };
+            newCanvas(vid, content, editn, canvas);
+            $("#" + canvas).hide();
+            $scope.editmode[editn] = false;
+        };
+
+    };
 
 
 
@@ -469,6 +501,7 @@ angular.module('starter.controllers', ['ngCordova'])
             //SET VIDEO OBJECT
             $video1 = $(vidclass).get(0);
 
+            
             //PLAY VIDEO
             //$video1.currentTime = 0.5;
 
@@ -477,7 +510,6 @@ angular.module('starter.controllers', ['ngCordova'])
                 $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
                 //console.log(($video1.currentTime) / ($video1.duration) * 100);
                 //$scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
-
             };
 
             $video1.ontimeupdate = video1seekupdate;

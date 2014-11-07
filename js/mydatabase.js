@@ -19,7 +19,8 @@ var mydatabase = angular.module('mydatabase', [])
         var sidemenu = {
             shoesale: 0,
             insolesale: 0,
-            premiumsale: 0
+            premiumsale: 0,
+            totalcalls: 0
         };
         var users = [];
         var enquiry = [];
@@ -49,10 +50,10 @@ var mydatabase = angular.module('mydatabase', [])
             getsidemenu: function () {
                 return sidemenu;
             },
-            setsidemenu: function (shoesale, insolesale, premiumsale) {
-                sidemenu.insolesale = insolesale;
-                sidemenu.premiumsale = premiumsale;
-                sidemenu.shoesale = shoesale;
+            setsidemenu: function () { //shoesale, insolesale, premiumsale
+                //sidemenu.insolesale = insolesale;
+                //sidemenu.premiumsale = premiumsale;
+                //sidemenu.shoesale = shoesale;
 
                 db.transaction(function (tx) {
                     console.log("SELECT count(*) AS `totalshoe` FROM `ENQUIRY` WHERE `shoe`= '1' AND `user` = '" + user.id + "' ");
@@ -66,6 +67,9 @@ var mydatabase = angular.module('mydatabase', [])
                     }, null);
                     tx.executeSql("SELECT count(*) AS `totalpremium` FROM `ENQUIRY` WHERE `premium`= '1' AND `user` = '" + user.id + "' ", [], function (tx, results2) {
                         sidemenu.premiumsale = results2.rows.item(0).totalpremium;
+                    }, null);
+                    tx.executeSql("SELECT count(*) AS `totalcalls` FROM `ENQUIRY` WHERE `user` = '" + user.id + "' ", [], function (tx, results3) {
+                        sidemenu.totalcalls = results3.rows.item(0).totalcalls;
                     }, null);
                 });
             },
