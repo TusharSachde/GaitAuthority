@@ -28,7 +28,7 @@
                         <div id="content1" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>
                         <div class="myvideocon1">
                             <video class="comparevideo1" width="100%" height="{{autoHeight-300}}">
-                                <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                <!--<source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">-->
                             </video>
                         </div>
                     </div>
@@ -39,17 +39,18 @@
 
                     <!-- <img src="img/record.jpg" class="full-image"> -->
                     <div class="row">
-                        <div class="col col-33">
+                        <div class="col">
                             <button class="button button-icon ion-record" ng-click="captureVideo('.myvideocon1','comparevideo1','.comparevideo1','.comparevideo1seek','.video1play','.video1pause' );"></button>
                             <button class="button button-icon ion-play video1play" ng-click="playpause('.comparevideo1', '.video1speed', '.video1play', '.video1pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
                             <button class="button button-icon ion-ios7-pause video1pause" ng-click="playpause('.comparevideo1', '.video1speed', '.video1play', '.video1pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
                             <button class="button button-icon ion-stop" ng-click="resetvideo('.comparevideo1', '.video1play', '.video1pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
+                            <button class="button button-icon icon ion-speedometer" ng-click="videospeed('.comparevideo1', 0.4);"></button>
                         </div>
-                        <div class="col col-67">
+                        <!--<div class="col col-67">
                             <div class="range">
                                 <input type="range" class="video1speed" ng-model="comparevideo1.speed" ng-change="onchangevideospeed('.comparevideo1', comparevideo1.speed);" name="speed1" min="10" max="100">
                             </div>
-                        </div>
+                        </div>-->
                     </div>
 
 
@@ -64,7 +65,7 @@
                         <!--<div id="content2" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>-->
                         <div class="myvideocon2">
                             <video class="comparevideo2" width="100%" height="{{autoHeight-300}}">
-                                <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                <!--<source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">-->
                             </video>
                         </div>
                     </div>
@@ -73,17 +74,18 @@
                     </div>
                     <div class="row">
                         
-                        <div class="col col-33">
+                        <div class="col">
                             <button class="button button-icon ion-record" ng-click="captureVideo('.myvideocon2','comparevideo2','.comparevideo2','.comparevideo2seek','.video2play','.video2pause');"></button>
                             <button class="button button-icon ion-play video2play" ng-click="playpause('.comparevideo2', '.video2speed', '.video2play', '.video2pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
                             <button class="button button-icon ion-ios7-pause video2pause" ng-click="playpause('.comparevideo2', '.video2speed', '.video2play', '.video2pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
                             <button class="button button-icon ion-stop" ng-click="resetvideo('.comparevideo2', '.video2play', '.video2pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
+                            <button class="button button-icon icon ion-speedometer" ng-click="videospeed('.comparevideo2', 0.4);"></button>
                         </div>
-                        <div class="col col-67">
+                        <!--<div class="col col-67">
                             <div class="range">
                                 <input type="range" class="video2speed" ng-model="comparevideo2.speed" ng-change="onchangevideospeed('.comparevideo2', comparevideo2.speed);" name="speed2" min="10" max="100">
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 

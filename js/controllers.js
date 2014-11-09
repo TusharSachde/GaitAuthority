@@ -352,6 +352,14 @@ angular.module('starter.controllers', ['ngCordova'])
         };
 
     };
+    
+    $scope.videospeed = function (vid, val) {
+            var $video = $(vid).get(0);
+            console.log('50 50 50 50');
+           
+                $video.playbackRate = val;
+           
+        };
 
 
 
@@ -503,7 +511,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
             
             //PLAY VIDEO
-            //$video1.currentTime = 0.5;
+            $video1.currentTime = 1;
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
@@ -530,16 +538,7 @@ angular.module('starter.controllers', ['ngCordova'])
         ////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $scope.videospeed = function (vid, val) {
-            var $video = $(vid).get(0);
-            
-            if($video.playbackRate == 0.4)
-            {
-                $video.playbackRate = 1;
-            }else{
-                $video.playbackRate = 0.4;
-            };
-        };
+        
 
 
     };
