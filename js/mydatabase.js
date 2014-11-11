@@ -73,7 +73,13 @@ var mydatabase = angular.module('mydatabase', [])
                     }, null);
                 });
             },
-
+            cleartable: function() {
+                db.transaction(function (tx) {
+                    console.log("TRUNCATIONG TABLE");
+                    //DELETE TABLE
+                    tx.executeSql("TRUNCATE TABLE `ENQUIRY`", [], function (tx, results) { }, null);
+                });
+            },
             authenticate: function (username) {
                 usernotpresent = true;
                 for (var i = 0; i < users.length; i++) {

@@ -213,9 +213,9 @@ span.ion-edit {
     text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.30) !important;
 }
 .bar.bar-stable {
-    border-color: #E02B1C;
-    background-color: #ef3323;
-    background: #ef3323;
+    border-color: #707074;
+    background-color: #7e7f83;
+    background: #7e7f83;
     color: #FFF;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.65);
 }

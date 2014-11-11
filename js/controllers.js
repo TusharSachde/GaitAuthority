@@ -22,14 +22,14 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //$scope.vidplength1 = 0;
     //$scope.vidplength2 = 0;
-    
+
     //var vid1 = $(".comparevideo1").get(0); 
     //$scope.vidplength1 = vid1.
     //$scope.vidplength1 = vid1.duration
-    
+
     $scope.video1 = {};
     MyDatabase.setwhichshow("record");
-    $scope.autoHeight = window.innerHeight-20;
+    $scope.autoHeight = window.innerHeight - 20;
     $scope.exitfunction = function () {
         $location.path("app/exit");
     }
@@ -327,17 +327,17 @@ angular.module('starter.controllers', ['ngCordova'])
         };
 
     };
-    
+
     $scope.onbothvideoseek = function (vid1, vid2, vid1seek, vid2seek, seek, editn, editbtn, noneditbtn, content, canvas) {
         $video1 = $(vid1).get(0);
         $video2 = $(vid2).get(0);
-        
+
         $video1.currentTime = seek * $video1.duration / 100;
         $video2.currentTime = seek * $video2.duration / 100;
-        
+
         $(vid1seek).val(seek);
         $(vid2seek).val(seek);
-        
+
 
         //MAKE NEW CANVAS AND HIDE CURRENT CANVAS
         if ($scope.editmode[editn] == true) {
@@ -352,14 +352,14 @@ angular.module('starter.controllers', ['ngCordova'])
         };
 
     };
-    
+
     $scope.videospeed = function (vid, val) {
-            var $video = $(vid).get(0);
-            console.log('50 50 50 50');
-           
-                $video.playbackRate = val;
-           
-        };
+        var $video = $(vid).get(0);
+        console.log('50 50 50 50');
+
+        $video.playbackRate = val;
+
+    };
 
 
 
@@ -491,7 +491,7 @@ angular.module('starter.controllers', ['ngCordova'])
         } else {
             if (holder == ".myvideocon1") {
                 $scope.path = video1path;
-                
+
             } else {
                 $scope.path = video2path;
                 page2 = false;
@@ -509,7 +509,7 @@ angular.module('starter.controllers', ['ngCordova'])
             //SET VIDEO OBJECT
             $video1 = $(vidclass).get(0);
 
-            
+
             //PLAY VIDEO
             $video1.currentTime = 1;
 
@@ -538,9 +538,15 @@ angular.module('starter.controllers', ['ngCordova'])
         ////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////
 
-        
 
 
+
+    };
+
+    //CLEAR DATA BUTTON
+    $scope.cleardata = function () {
+        console.log("TRUNCATIONG TABLE 1");
+        MyDatabase.cleartable();
     };
 
     //ADD VIDEO 2
@@ -576,13 +582,13 @@ angular.module('starter.controllers', ['ngCordova'])
         console.log("CALLING FIRST VIDEO IN COMPARE");
         console.log(video1path);
         $scope.captureVideo(".myvideocon1", "comparevideo1", ".comparevideo1", ".comparevideo1seek", ".video1play", ".video1pause");
-        
+
         console.log("CALLING SECOND VIDEO IN COMPARE");
         console.log(video2path);
         $scope.captureVideo(".myvideocon2", "comparevideo2", ".comparevideo2", ".comparevideo2seek", ".video2play", ".video2pause");
     };
     if (page3 == true) {
-        
+
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
 })
@@ -605,7 +611,7 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $video1.ontimeupdate = video1seekupdate;
-    
+
     //function called when video ended
     var videoend = function () {
         console.log("Video Ends");
@@ -689,7 +695,7 @@ angular.module('starter.controllers', ['ngCordova'])
     //OPEN THE DATABASE AND CREATE DB VARIABLE
 
     page2 = false;
-    $scope.autoHeight = window.innerHeight-20;
+    $scope.autoHeight = window.innerHeight - 20;
 
     //FUNCTION WHEN LOGIN N BUTTON IS PRESSED
     $scope.login2 = function () {
@@ -700,7 +706,7 @@ angular.module('starter.controllers', ['ngCordova'])
         //TRANSACTIONS
         //MyDatabase.authenticate(username);
         //REMOVED FROM SERVICES
-        
+
 
     };
 })
@@ -777,5 +783,10 @@ angular.module('starter.controllers', ['ngCordova'])
 
             MyDatabase.updateenquiry(shoe, insole, premium);
             //window.location.replace(window.location.origin + window.location.pathname + "#/app/loginpage");
+        };
+
+        //CLEAR DATA BUTTON
+        $scope.cleardata = function () {
+            MyDatabase.cleartable();
         };
     });
