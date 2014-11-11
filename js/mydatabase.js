@@ -75,10 +75,26 @@ var mydatabase = angular.module('mydatabase', [])
             },
             cleartable: function() {
                 db.transaction(function (tx) {
-                    console.log("TRUNCATIONG TABLE");
+                    console.log("TRUNCATING TABLE");
                     //DELETE TABLE
-                    tx.executeSql("TRUNCATE TABLE `ENQUIRY`", [], function (tx, results) { }, null);
+                    tx.executeSql("DELETE FROM 'ENQUIRY' WHERE `user` = '" + user.id + "' ", [], function (tx, results) { }, null);
+                
+                
+                tx.executeSql("SELECT count(*) AS `totalshoe` FROM `ENQUIRY` WHERE `shoe`= '1' AND `user` = '" + user.id + "' ", [], function (tx, results4) {
+                        sidemenu.shoesale = results4.rows.item(0).totalshoe;
+                    }, null);
+
+                    tx.executeSql("SELECT count(*) AS `totalinsole` FROM `ENQUIRY` WHERE `insole`= '1' AND `user` = '" + user.id + "' ", [], function (tx, results1) {
+                        sidemenu.insolesale = results1.rows.item(0).totalinsole;
+                    }, null);
+                    tx.executeSql("SELECT count(*) AS `totalpremium` FROM `ENQUIRY` WHERE `premium`= '1' AND `user` = '" + user.id + "' ", [], function (tx, results2) {
+                        sidemenu.premiumsale = results2.rows.item(0).totalpremium;
+                    }, null);
+                    tx.executeSql("SELECT count(*) AS `totalcalls` FROM `ENQUIRY` WHERE `user` = '" + user.id + "' ", [], function (tx, results3) {
+                        sidemenu.totalcalls = results3.rows.item(0).totalcalls;
+                    }, null);
                 });
+                
             },
             authenticate: function (username) {
                 usernotpresent = true;
