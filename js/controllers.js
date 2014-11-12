@@ -591,6 +591,11 @@ angular.module('starter.controllers', ['ngCordova'])
 
     };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
+
+    //SIDE MENU
+    $scope.toggleRight = function () {
+        $ionicSideMenuDelegate.toggleRight();
+    };
 })
 
 //CONTROLLER FOR THE VIDEO IN THE "RECORD" PAGE
@@ -741,7 +746,7 @@ angular.module('starter.controllers', ['ngCordova'])
         //
         //        });
     })
-    .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
+    .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase, $ionicSideMenuDelegate) {
         $scope.premiumshow = false;
         $scope.slideclass = 'hidepremium';
         $scope.orderdetails = {};
@@ -761,6 +766,8 @@ angular.module('starter.controllers', ['ngCordova'])
         page2 = false;
 
         MyDatabase.setsidemenu();
+
+
 
         $scope.submitorder = function () {
 
@@ -785,6 +792,10 @@ angular.module('starter.controllers', ['ngCordova'])
             //window.location.replace(window.location.origin + window.location.pathname + "#/app/loginpage");
         };
 
+        //SIDE MENU
+        $scope.toggleRight = function () {
+            $ionicSideMenuDelegate.toggleRight();
+        };
         //CLEAR DATA BUTTON
         $scope.cleardata = function () {
             MyDatabase.cleartable();

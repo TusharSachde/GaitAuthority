@@ -1,8 +1,10 @@
 <ion-view title="Review">
     <ion-nav-buttons side="left">
-        <ion-nav-buttons side="right">
-            <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
-        </ion-nav-buttons>
+        <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>
+        <button class="button button-icon icon ion-stats-bars" ng-click="toggleRight();"></button>
     </ion-nav-buttons>
     <ion-content class="has-header">
         <ul class="list">
@@ -16,7 +18,7 @@
                 </label>
             </li>
             <di ng-class="slideclass">
-                <li class="item item-toggle" >
+                <li class="item item-toggle">
                     Was it a Premium Sale?
                     <label class="toggle toggle-balanced">
                         <input type="checkbox" ng-model="orderdetails.premium">
@@ -25,17 +27,17 @@
                         </div>
                     </label>
                 </li>
-            
-            <li class="item item-toggle">
-                Did the Customer Purchase an insole?
-                <label class="toggle toggle-balanced">
-                    <input type="checkbox" ng-model="orderdetails.insole">
-                    <div class="track">
-                        <div class="handle"></div>
-                    </div>
-                </label>
-            </li>
-            </div>
+
+                <li class="item item-toggle">
+                    Did the Customer Purchase an insole?
+                    <label class="toggle toggle-balanced">
+                        <input type="checkbox" ng-model="orderdetails.insole">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+                </div>
         </ul>
         <div class="padding">
             <button class="button button-full button-assertive" ng-click="submitorder();">

@@ -1,11 +1,13 @@
 <ion-view title="Record Video 2">
     <ion-nav-buttons side="left" ng-controller="menuCtrl">
-    <button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>
+        <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
         <button class="button button-icon icon ion-edit video1edit" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');"></button>
         <button class="button button-icon icon ion-ios7-close video1nonedit" style="display:none" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');"></button>
-        <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
+        <button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>
+        <button class="button button-icon icon ion-stats-bars" ng-click="toggleRight();"></button>
+        
     </ion-nav-buttons>
 
     <ion-content class="has-header" scroll="false">

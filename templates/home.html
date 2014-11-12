@@ -1,16 +1,17 @@
 <ion-view title="Compare Video">
     <ion-nav-buttons side="left">
-    <button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
         <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
     </ion-nav-buttons>
-
+    <ion-nav-buttons side="right">
+        <button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>
+        <button class="button button-icon icon ion-stats-bars" ng-click="toggleRight();"></button>
+    </ion-nav-buttons>
     <ion-content ng-class="appclass" delegate-handle="mainScroll" scroll="false">
         <div class="controls">
             <div class="innerctrl" style="z-index: 5; position: relative;" ng-controller="editbtnCtrl">
                 <button class="button button-icon ion-edit video1edit" ng-click="getpencil('both','both','both', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
                 <button class="button button-icon ion-ios7-close video1nonedit" ng-click="getpencil('both','both','both', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');" style="display:none"></button>
+
 
                 <!--<button class="button button-icon ion-edit video2edit" ng-click= "getpencil('.comparevideo2','.video2play','.video2pause', 2, '.video2edit', '.video2nonedit', '#content2','canvas2');"></button>
                 <button class="button button-icon ion-ios7-close video2nonedit" ng-click="getpencil('.comparevideo2','.video2play','.video2pause', 2, '.video2edit', '.video2nonedit', '#content2','canvas2');"></button>-->
@@ -20,7 +21,8 @@
         <div class="row videoFrame">
             <div class="col">
 
-                <div class="videoHolder"> <!--ng-controller="compare1Ctrl">-->
+                <div class="videoHolder">
+                    <!--ng-controller="compare1Ctrl">-->
 
                     <!--<canvas id="flexBox" width="100" height="100"></canvas>-->
                     <div class="videosec" style="overflow:hidden;">
@@ -61,7 +63,8 @@
             <div class="col">
 
 
-                <div class="videoHolder"> <!-- ng-controller="compare2Ctrl">-->
+                <div class="videoHolder">
+                    <!-- ng-controller="compare2Ctrl">-->
                     <div class="videosec" style="overflow:hidden;">
                         <!--<div id="content2" style="width: 100%;height: 485px;position: absolute;left: 0px;" on-swipe="otherswipe();"></div>-->
                         <div class="myvideocon2">
@@ -74,7 +77,7 @@
                         <input type="range" class="comparevideo2seek" ng-model="ngcomparevideo2.seek" ng-change="onchangevideoseek('.comparevideo2', ngcomparevideo2.seek, 1,'.video1edit', '.video1nonedit', '#content1','canvas1');" name="volume" min="0" max="100">
                     </div>
                     <div class="row">
-                        
+
                         <div class="col">
                             <button class="button button-icon ion-record" style="color:#ef3323" ng-click="captureVideo('.myvideocon2','comparevideo2','.comparevideo2','.comparevideo2seek','.video2play','.video2pause');"></button>
                             <button class="button button-icon ion-play video2play" ng-click="playpause('.comparevideo2', '.video2speed', '.video2play', '.video2pause', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
@@ -98,12 +101,12 @@
 
             <div class="col">
                 <div class="range">
-                                <input type="range" class="videoseek" ng-model="video.seek" ng-change="onbothvideoseek('.comparevideo1','.comparevideo2','.comparevideo1seek','.comparevideo2seek', video.seek, 1,'.video1edit', '.video1nonedit', '#content1','canvas1' );" name="speed2" min="0" max="100">
-                            </div>
-                    <button class="button button-full button-assertive" ng-click="exitfunction();">
-                        Finish
-                    </button>
-                
+                    <input type="range" class="videoseek" ng-model="video.seek" ng-change="onbothvideoseek('.comparevideo1','.comparevideo2','.comparevideo1seek','.comparevideo2seek', video.seek, 1,'.video1edit', '.video1nonedit', '#content1','canvas1' );" name="speed2" min="0" max="100">
+                </div>
+                <button class="button button-full button-assertive" ng-click="exitfunction();">
+                    Finish
+                </button>
+
             </div>
         </div>
     </ion-content>
