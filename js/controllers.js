@@ -7,6 +7,7 @@ var page3 = false;
 var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
+var vidtaken = false;
 
 console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
@@ -433,6 +434,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
+        
+        vidtaken = true;
 
         if (page2 == false || page3 == false) {
             var options = {
@@ -770,6 +773,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
 
         $scope.submitorder = function () {
+            
+            vidtaken = false;
 
             //CONVERT TRUE/FALSE to 0/1
             if ($scope.orderdetails.shoe == false) {
