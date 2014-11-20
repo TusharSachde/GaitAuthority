@@ -8,7 +8,7 @@ var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
 var vidtaken = {};
-var vidtaken.show = false;
+vidtaken.show = false;
 
 console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
