@@ -7,7 +7,8 @@ var page3 = false;
 var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
-var vidtaken = false;
+var vidtaken = {};
+var vidtaken.show = false;
 
 console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
@@ -435,7 +436,7 @@ angular.module('starter.controllers', ['ngCordova'])
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
         
-        vidtaken = true;
+        vidtaken.show = true;
 
         if (page2 == false || page3 == false) {
             var options = {
@@ -694,6 +695,7 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
+    vidtaken.show = false;
     $.jStorage.flush();
 
     user = {};
@@ -730,24 +732,6 @@ angular.module('starter.controllers', ['ngCordova'])
         //OPEN THE DATABASE AND CREATE DB VARIABLE
         var db = openDatabase('gait', '1.0', 'gait DB', 2 * 1024 * 1024);
 
-        //        //TRANSACTION
-        //        db.transaction(function (ex) {
-        //            console.log(user);
-        //            var sqlstatement1 = "SELECT count(`shoe`) AS `totalshoe` FROM `ENQUIRY` WHERE `shoe`== 1 AND `user` == '" + user.id + "' ";
-        //            console.log(sqlstatement1);
-        //            ex.executeSql(sqlstatement1, [], function (tx, results) {
-        //                console.log(results);
-        //                $scope.userinfo.totalshoe = results.rows.item(0).totalshoe;
-        //
-        //                console.log($scope.userinfo.totalshoe);
-        //                console.log("RAOW INSERTED");
-        //                $location.path("app/record");
-        //            }, null);
-        //
-        //
-        //            //$location.path("app/record");
-        //
-        //        });
     })
     .controller('ExitCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase, $ionicSideMenuDelegate) {
         $scope.premiumshow = false;
@@ -774,7 +758,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $scope.submitorder = function () {
             
-            vidtaken = false;
+            vidtaken.show = false;
 
             //CONVERT TRUE/FALSE to 0/1
             if ($scope.orderdetails.shoe == false) {
