@@ -591,9 +591,6 @@ angular.module('starter.controllers', ['ngCordova'])
         console.log(video2path);
         $scope.captureVideo(".myvideocon2", "comparevideo2", ".comparevideo2", ".comparevideo2seek", ".video2play", ".video2pause");
     };
-    if (page3 == true) {
-
-    };
     //console.log("ng video 1 seek is"+ngvideo1.seek);
 
     //SIDE MENU
