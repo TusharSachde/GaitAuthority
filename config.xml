@@ -7,7 +7,7 @@
     <icon src="img/app-logo.png" />
     <gap:splash src="img/splash.jpg" />
 
-    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="phonegap-version" value="3.1.0" />
     <preference name="orientation" value="landscape" />
     <preference name="fullscreen" value="true" />
     <preference name="target-device" value="universal" />
