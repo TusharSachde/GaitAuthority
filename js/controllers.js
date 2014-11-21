@@ -7,8 +7,8 @@ var page3 = false;
 var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
-var vidtaken = {};
-vidtaken.show = false;
+/*var vidtaken = {};
+vidtaken.show = false;*/
 
 console.log("RUN RUN RUN");
 angular.module('starter.controllers', ['ngCordova'])
@@ -29,6 +29,12 @@ angular.module('starter.controllers', ['ngCordova'])
     //$scope.vidplength1 = vid1.
     //$scope.vidplength1 = vid1.duration
 
+    $scope.vidtaken = true;
+    if(page2 == false)
+    {
+        $scope.vidtaken = false;
+    };
+    
     $scope.video1 = {};
     MyDatabase.setwhichshow("record");
     $scope.autoHeight = window.innerHeight - 20;
@@ -435,8 +441,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
-        
-        vidtaken.show = true;
+        $scope.vidtaken = true;
+        /*vidtaken.show = true;*/
 
         if (page2 == false || page3 == false) {
             var options = {
@@ -692,7 +698,7 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('LoginpageCtrl', function ($scope, $stateParams, $cordovaCapture, $location, MyDatabase) {
-    vidtaken.show = false;
+    /*vidtaken.show = false;*/
     $.jStorage.flush();
 
     user = {};
@@ -755,7 +761,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
         $scope.submitorder = function () {
             
-            vidtaken.show = false;
+            /*vidtaken.show = false;*/
 
             //CONVERT TRUE/FALSE to 0/1
             if ($scope.orderdetails.shoe == false) {
