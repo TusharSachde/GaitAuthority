@@ -441,7 +441,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
-        $scope.vidtaken = true;
+        
         /*vidtaken.show = true;*/
 
         if (page2 == false || page3 == false) {
@@ -467,6 +467,7 @@ angular.module('starter.controllers', ['ngCordova'])
                     $scope.path = $scope.path.substr(6);
                 }
                 $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+                $scope.vidtaken = true;
 
 
 
