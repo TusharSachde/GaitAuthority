@@ -85,6 +85,8 @@ angular.module('starter.controllers', ['ngCordova'])
             var storedLines = [];
             var startX = 0;
             var startY = 0;
+            var endX = 0;
+            var endY = 0;
             var isDown;
 
             //STROKE LOGIC
@@ -96,12 +98,11 @@ angular.module('starter.controllers', ['ngCordova'])
             $("#"+canvase).on(TouchMouseEvent.MOVE, function(e){
                 handleMouseMove(e);
             });
-            $("#"+canvase).on(TouchMouseEvent.UP, function(e){
+            /*$("#"+canvase).on(TouchMouseEvent.UP, function(e){
                 handleMouseUp(e);
-            });
-             $("#clear").click(function () {
-            storedLines.length = 0;
-            redrawStoredLines();
+            });*/
+            $("#"+canvase).mouseup(function (e) {
+            handleMouseUp(e);
         });
 
             function handleMouseDown(e) {
@@ -147,6 +148,7 @@ angular.module('starter.controllers', ['ngCordova'])
                     x2: mouseX,
                     y2: mouseY
                 });
+                console.log(storedLines);
 
                 redrawStoredLines();
 
@@ -163,6 +165,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
                 // redraw each stored line
                 for (var i = 0; i < storedLines.length; i++) {
+                    console.log(storedLines[i].y2);
                     ctx.beginPath();
                     ctx.moveTo(storedLines[i].x1, storedLines[i].y1);
                     ctx.lineTo(storedLines[i].x2, storedLines[i].y2);
@@ -192,7 +195,7 @@ angular.module('starter.controllers', ['ngCordova'])
             //$ionicSideMenuDelegate.canDragContent(false);
             $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
                 console.log(vid);
-                //if (vid != ".video1") {
+                if (vid != ".video1") {
                     if (vid == "both") {
                         $(".comparevideo1").get(0).pause();
                         $(".comparevideo2").get(0).pause();
@@ -206,7 +209,7 @@ angular.module('starter.controllers', ['ngCordova'])
                         $(pausebtn).hide();
                         $(playbtn).show();
                     };
-                //};
+                };
                 //$video1.pause();
 
 
