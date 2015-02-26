@@ -182,11 +182,16 @@ angular.module('starter.controllers', ['ngCordova'])
 
             // redraw each stored line
             for (var i = 0; i < storedLines.length; i++) {
-                console.log(storedLines[i].y2);
-                ctx.beginPath();
-                ctx.moveTo(storedLines[i].x1, storedLines[i].y1);
-                ctx.lineTo(storedLines[i].x2, storedLines[i].y2);
-                ctx.stroke();
+                if(storedLines[i].y2 != 0)
+                {
+                    if(storedLines[i].x2 != 0)
+                    {
+                        ctx.beginPath();
+                        ctx.moveTo(storedLines[i].x1, storedLines[i].y1);
+                        ctx.lineTo(storedLines[i].x2, storedLines[i].y2);
+                        ctx.stroke();
+                    };
+                };
             }
         };
         /*$("#" + canvase).on('click', function (e) {
