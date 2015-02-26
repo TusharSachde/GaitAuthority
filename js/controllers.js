@@ -75,6 +75,8 @@ angular.module('starter.controllers', ['ngCordova'])
         $(content).height($(vid).height());
         var canvas = '<canvas id="' + canvase + '" width="' + $(content).width() + '" height="' + ($(vid).height()) + '"></canvas>';
         $(content).html(canvas);
+        
+        
 
         // setup canvas drawing
         var canvaso = document.getElementById(canvase);
@@ -91,6 +93,12 @@ angular.module('starter.controllers', ['ngCordova'])
         var endY = 0;
         var isDown;
 
+        //UNDO SYSTEM
+        $(".undo").click(function (e) {
+            storedLines.pop();
+            redrawStoredLines();
+        });
+        
         //STROKE LOGIC
         $("#" + canvase).on(TouchMouseEvent.DOWN, function (e) {
             handleMouseDown(e);
@@ -203,7 +211,7 @@ angular.module('starter.controllers', ['ngCordova'])
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
         console.log(vid);
-        if (vid != ".video1") {
+        //if (vid != ".video1") {
             if (vid == "both") {
                 $(".comparevideo1").get(0).pause();
                 $(".comparevideo2").get(0).pause();
@@ -217,7 +225,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 $(pausebtn).hide();
                 $(playbtn).show();
             };
-        };
+        //};
         //$video1.pause();
 
 
@@ -225,6 +233,7 @@ angular.module('starter.controllers', ['ngCordova'])
         if ($scope.editmode[editn] == true) {
             //NON-EDIT MODE
             $(edit).show();
+            $(".undo").hide();
             $(nonedit).hide();
             $scope.editmode[editn] = false;
             $ionicSideMenuDelegate.canDragContent(true);
@@ -232,6 +241,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $("#" + canvas).hide();
         } else {
             //EDIT MODE
+            $(".undo").show();
             $(edit).hide();
             $(nonedit).show();
             $scope.editmode[editn] = true;
