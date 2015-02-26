@@ -7,6 +7,7 @@ var page3 = false;
 var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
+var ctx;
 /*var vidtaken = {};
 vidtaken.show = false;*/
 
@@ -30,11 +31,10 @@ angular.module('starter.controllers', ['ngCordova'])
     //$scope.vidplength1 = vid1.duration
 
     $scope.vidtaken = true;
-    if(page2 == false)
-    {
+    if (page2 == false) {
         $scope.vidtaken = false;
     };
-    
+
     $scope.video1 = {};
     MyDatabase.setwhichshow("record");
     $scope.autoHeight = window.innerHeight - 20;
@@ -59,6 +59,10 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //CREATE NEW CANVAS FUNCTION
     var newCanvas = function (vid, content, editn, canvase) {
+        var pointonex = 0;
+        var pointoney = 0;
+        var pointtwox = 0;
+        var pointtwoy = 0;
         //define and resize canvas
         console.log(canvase);
         if (vid == "both") {
@@ -67,34 +71,66 @@ angular.module('starter.controllers', ['ngCordova'])
         $(content).height($(vid).height());
         var canvas = '<canvas id="' + canvase + '" width="' + $(content).width() + '" height="' + ($(vid).height()) + '"></canvas>';
         $(content).html(canvas);
-
-        // setup canvas
+        
+        // setup canvas drawing
         ctx = document.getElementById(canvase).getContext("2d");
         ctx.strokeStyle = color;
         ctx.lineWidth = 5;
 
-        // setup to trigger drawing on mouse or touch
+        //STROKE LOGIC
+        $("#" + canvase).on('click', function (e) {
+            if(pointonex == 0)
+            {
+                pointonex = e.pageX - this.offsetLeft;
+                pointoney = e.pageY - this.offsetTop;
+            }else{
+                pointtwox = e.pageX - this.offsetLeft;
+                pointtwoy = e.pageY - this.offsetTop;
+                ctx.beginPath();
+                ctx.moveTo(pointonex, pointoney);
+                ctx.lineTo(pointtwox, pointtwoy);
+                ctx.stroke();
+                pointonex=0;
+                pointoney=0;
+            };
+        });
+        
+        /*var c = document.getElementById("myCanvas");
+
+
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.moveTo(0, 0);
+ctx.lineTo(300, 150);
+ctx.stroke();*/
+
+        
+
+        /*// setup to trigger drawing on mouse or touch
         $("#" + canvase).drawTouch();
         $("#" + canvase).drawPointer();
-        $("#" + canvase).drawMouse();
+        $("#" + canvase).drawMouse();*/
     };
 
     //Pencil
     var ctx, color = "#ef3323";
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
-        if (vid == "both") {
-            $(".comparevideo1").get(0).pause();
-            $(".comparevideo2").get(0).pause();
-            $(".video1play").show();
-            $(".video1pause").hide();
-            $(".video2play").show();
-            $(".video2pause").hide();
-        } else {
-            $vid = $(vid).get(0);
-            $vid.pause();
-            $(pausebtn).hide();
-            $(playbtn).show();
+        console.log(vid);
+        if (vid != ".video1") {
+            if (vid == "both") {
+                $(".comparevideo1").get(0).pause();
+                $(".comparevideo2").get(0).pause();
+                $(".video1play").show();
+                $(".video1pause").hide();
+                $(".video2play").show();
+                $(".video2pause").hide();
+            } else {
+                $vid = $(vid).get(0);
+                $vid.pause();
+                $(pausebtn).hide();
+                $(playbtn).show();
+            };
         };
         //$video1.pause();
 
@@ -441,7 +477,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //Capture button function
     $scope.captureVideo = function (holder, vid, vidclass, vidseek, vidplay, vidpause) {
-        
+
         /*vidtaken.show = true;*/
 
         if (page2 == false || page3 == false) {
@@ -761,7 +797,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 
         $scope.submitorder = function () {
-            
+
             /*vidtaken.show = false;*/
 
             //CONVERT TRUE/FALSE to 0/1
