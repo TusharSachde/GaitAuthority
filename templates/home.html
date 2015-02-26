@@ -10,6 +10,7 @@
     <ion-content ng-class="appclass" delegate-handle="mainScroll" scroll="false">
         <div class="controls">
             <div class="innerctrl" style="z-index: 5; position: relative;" ng-controller="editbtnCtrl">
+                <button class="button button-icon icon ion-reply undo" style="display:none"></button>
                 <button class="button button-icon ion-edit video1edit" ng-click="getpencil('both','both','both', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');"></button>
                 <button class="button button-icon ion-ios7-close video1nonedit" ng-click="getpencil('both','both','both', 1, '.video1edit', '.video1nonedit', '#content1','canvas1');" style="display:none"></button>
 
