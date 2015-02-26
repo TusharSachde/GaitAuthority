@@ -87,6 +87,8 @@ angular.module('starter.controllers', ['ngCordova'])
         var startY = 0;
         var endX = 0;
         var endY = 0;
+        var mouseX = 0;
+        var mouseY = 0;
         var isDown;
 
         //STROKE LOGIC
@@ -129,8 +131,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
             redrawStoredLines();
 
-            var mouseX = parseInt(e.pageX - offsetX);
-            var mouseY = parseInt(e.pageY - offsetY);
+            mouseX = parseInt(e.pageX - offsetX);
+            mouseY = parseInt(e.pageY - offsetY);
 
             // draw the current line
             ctx.beginPath();
