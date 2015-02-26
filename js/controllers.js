@@ -92,16 +92,22 @@ angular.module('starter.controllers', ['ngCordova'])
             //STROKE LOGIC
 
 
-            $("#"+canvase).on(TouchMouseEvent.DOWN, function(e){
+            /*$("#"+canvase).on(TouchMouseEvent.DOWN, function(e){
                 handleMouseDown(e);
             });
             $("#"+canvase).on(TouchMouseEvent.MOVE, function(e){
                 handleMouseMove(e);
-            });
+            });*/
             /*$("#"+canvase).on(TouchMouseEvent.UP, function(e){
                 handleMouseUp(e);
             });*/
-            $("#"+canvase).mouseup(function (e) {
+            $("#canvas").mousedown(function (e) {
+            handleMouseDown(e);
+        });
+        $("#canvas").mousemove(function (e) {
+            handleMouseMove(e);
+        });
+        $("#canvas").mouseup(function (e) {
             handleMouseUp(e);
         });
 
