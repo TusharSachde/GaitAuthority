@@ -8,6 +8,8 @@ var page3 = true;*/
 var video1 = 0;
 var myconsole = 0;
 var ctx;
+var mouseX = 0;
+var mouseY = 0;
 
 
 /*var vidtaken = {};
@@ -87,8 +89,6 @@ angular.module('starter.controllers', ['ngCordova'])
         var startY = 0;
         var endX = 0;
         var endY = 0;
-        var mouseX = 0;
-        var mouseY = 0;
         var isDown;
 
         //STROKE LOGIC
@@ -98,7 +98,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $("#" + canvase).on(TouchMouseEvent.MOVE, function (e) {
             handleMouseMove(e);
         });
-        $("#"+canvase).on(TouchMouseEvent.UP, function(e){
+        $("#" + canvase).on(TouchMouseEvent.UP, function (e) {
             handleMouseUp(e);
         });
         /*
@@ -114,12 +114,12 @@ angular.module('starter.controllers', ['ngCordova'])
         */
 
         function handleMouseDown(e) {
-            var mouseX = parseInt(e.pageX - offsetX);
-            var mouseY = parseInt(e.pageY - offsetY);
+            var mx = parseInt(e.pageX - offsetX);
+            var my = parseInt(e.pageY - offsetY);
 
             isDown = true;
-            startX = mouseX;
-            startY = mouseY;
+            startX = mx;
+            startY = my;
 
         }
 
