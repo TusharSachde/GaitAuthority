@@ -164,7 +164,8 @@ angular.module('starter.controllers', ['ngCordova'])
                 x2: mouseX,
                 y2: mouseY
             });
-            console.log(storedLines);
+            mouseX = 0;
+            mouseY = 0;
 
             redrawStoredLines();
 
