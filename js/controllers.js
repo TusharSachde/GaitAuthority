@@ -94,22 +94,6 @@ angular.module('starter.controllers', ['ngCordova'])
                 pointoney=0;
             };
         });
-        
-        /*var c = document.getElementById("myCanvas");
-
-
-var ctx = c.getContext("2d");
-ctx.beginPath();
-ctx.moveTo(0, 0);
-ctx.lineTo(300, 150);
-ctx.stroke();*/
-
-        
-
-        /*// setup to trigger drawing on mouse or touch
-        $("#" + canvase).drawTouch();
-        $("#" + canvase).drawPointer();
-        $("#" + canvase).drawMouse();*/
     };
 
     //Pencil
@@ -117,7 +101,7 @@ ctx.stroke();*/
     //$ionicSideMenuDelegate.canDragContent(false);
     $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
         console.log(vid);
-        if (vid != ".video1") {
+        //if (vid != ".video1") {
             if (vid == "both") {
                 $(".comparevideo1").get(0).pause();
                 $(".comparevideo2").get(0).pause();
@@ -131,7 +115,7 @@ ctx.stroke();*/
                 $(pausebtn).hide();
                 $(playbtn).show();
             };
-        };
+        //};
         //$video1.pause();
 
 
