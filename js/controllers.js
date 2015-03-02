@@ -606,9 +606,9 @@ angular.module('starter.controllers', ['ngCordova'])
                 $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
                 $scope.vidtaken = true;
 
-                //VIDEO ACTIONS
+                /*//VIDEO ACTIONS
                 $("." + vid).playbackRate = 1;
-                $("." + vid).play();
+                $("." + vid).play();*/
                 
                 //ON UPDATE AND ON END FUNCTIONS
                 $video1 = $(vidclass).get(0);
@@ -663,9 +663,9 @@ angular.module('starter.controllers', ['ngCordova'])
             //PLAY VIDEO
             $video1.currentTime = 1;
 
-            //VIDEO ACTIONS
+            /*//VIDEO ACTIONS
             $("." + vid).playbackRate = 1;
-            $("." + vid).play();
+            $("." + vid).play();*/
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
