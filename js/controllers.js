@@ -662,6 +662,10 @@ angular.module('starter.controllers', ['ngCordova'])
 
             //PLAY VIDEO
             $video1.currentTime = 1;
+            
+            //VIDEO ACTIONS
+            $("."+vid).playbackRate = 1;
+            $("."+vid).play();
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
