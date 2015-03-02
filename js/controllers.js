@@ -75,8 +75,8 @@ angular.module('starter.controllers', ['ngCordova'])
         $(content).height($(vid).height());
         var canvas = '<canvas id="' + canvase + '" width="' + $(content).width() + '" height="' + ($(vid).height()) + '"></canvas>';
         $(content).html(canvas);
-        
-        
+
+
 
         // setup canvas drawing
         var canvaso = document.getElementById(canvase);
@@ -98,7 +98,7 @@ angular.module('starter.controllers', ['ngCordova'])
             storedLines.pop();
             redrawStoredLines();
         });
-        
+
         //STROKE LOGIC
         $("#" + canvase).on(TouchMouseEvent.DOWN, function (e) {
             handleMouseDown(e);
@@ -182,10 +182,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
             // redraw each stored line
             for (var i = 0; i < storedLines.length; i++) {
-                if(storedLines[i].y2 != 0)
-                {
-                    if(storedLines[i].x2 != 0)
-                    {
+                if (storedLines[i].y2 != 0) {
+                    if (storedLines[i].x2 != 0) {
                         ctx.beginPath();
                         ctx.moveTo(storedLines[i].x1, storedLines[i].y1);
                         ctx.lineTo(storedLines[i].x2, storedLines[i].y2);
@@ -218,19 +216,19 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.getpencil = function (vid, playbtn, pausebtn, editn, edit, nonedit, content, canvas) {
         console.log(vid);
         //if (vid != ".video1") {
-            if (vid == "both") {
-                $(".comparevideo1").get(0).pause();
-                $(".comparevideo2").get(0).pause();
-                $(".video1play").show();
-                $(".video1pause").hide();
-                $(".video2play").show();
-                $(".video2pause").hide();
-            } else {
-                $vid = $(vid).get(0);
-                $vid.pause();
-                $(pausebtn).hide();
-                $(playbtn).show();
-            };
+        if (vid == "both") {
+            $(".comparevideo1").get(0).pause();
+            $(".comparevideo2").get(0).pause();
+            $(".video1play").show();
+            $(".video1pause").hide();
+            $(".video2play").show();
+            $(".video2pause").hide();
+        } else {
+            $vid = $(vid).get(0);
+            $vid.pause();
+            $(pausebtn).hide();
+            $(playbtn).show();
+        };
         //};
         //$video1.pause();
 
@@ -250,7 +248,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $(".undo").show();
             $(edit).hide();
             $(nonedit).show();
-            $(nonedit).css('color','#5B5656');
+            $(nonedit).css('color', '#5B5656');
             $scope.editmode[editn] = true;
             $ionicSideMenuDelegate.canDragContent(false);
             newCanvas(vid, content, editn, canvas);
@@ -608,8 +606,10 @@ angular.module('starter.controllers', ['ngCordova'])
                 $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
                 $scope.vidtaken = true;
 
-
-
+                //VIDEO ACTIONS
+                $("." + vid).playbackRate = 1;
+                $("." + vid).play();
+                
                 //ON UPDATE AND ON END FUNCTIONS
                 $video1 = $(vidclass).get(0);
                 var video1seekupdate = function () {
@@ -662,10 +662,10 @@ angular.module('starter.controllers', ['ngCordova'])
 
             //PLAY VIDEO
             $video1.currentTime = 1;
-            
+
             //VIDEO ACTIONS
-            $("."+vid).playbackRate = 1;
-            $("."+vid).play();
+            $("." + vid).playbackRate = 1;
+            $("." + vid).play();
 
             //ON UPDATE AND ON END FUNCTIONS            
             var video1seekupdate = function () {
