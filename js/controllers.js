@@ -250,6 +250,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $(".undo").show();
             $(edit).hide();
             $(nonedit).show();
+            $(nonedit).css('color','#5B5656');
             $scope.editmode[editn] = true;
             $ionicSideMenuDelegate.canDragContent(false);
             newCanvas(vid, content, editn, canvas);

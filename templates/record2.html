@@ -1,15 +1,17 @@
 <ion-view title="Record Video 2">
     <ion-nav-buttons side="left" ng-controller="menuCtrl">
         <a class="button button-icon light icon ion-home" href="#/app/loginpage"></a>
-        <button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>
+        <!--<button class="button button-icon icon ion-trash-a" ng-click="cleardata();"></button>-->
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-       <button class="button button-icon icon ion-reply undo" style="display:none"></button>
-        <button class="button button-icon icon ion-edit video1edit" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');"></button>
-        <button class="button button-icon icon ion-ios7-close video1nonedit" style="display:none" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');"></button>
-        
+        <button class="button button-icon icon ion-reply undo" style="display:none"></button>
+        <!--<button class="button button-icon icon ion-edit video1edit" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');"></button>
+        <button class="button button-icon icon ion-ios7-close video1nonedit" style="display:none" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');"></button>-->
+        <button class="button video1edit" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');" style="color:#5B5656;">EDIT MODE</button>
+        <button class="button video1nonedit" style="display:none" ng-click="getpencil('.video2','.video1play','.video1pause', 2, '.video1edit', '.video1nonedit','#content','canvas');">EXIT EDIT MODE</button>
+
         <button class="button button-icon icon ion-stats-bars" ng-click="toggleRight();"></button>
-        
+
     </ion-nav-buttons>
 
     <ion-content class="has-header" scroll="false">
@@ -39,10 +41,13 @@
 
 
                 </div>
-                
-                    <!--<input type="range" class="videospeedchanger video1speed" ng-model="video1.speed" ng-change="onchangevideospeed('.video2', video1.speed);" name="speed1" min="5" max="100">-->
-                <button class="button button-icon icon ion-speedometer" ng-click="videospeed('.video2', 0.4);"></button>
-                <button class="button button-icon icon ion-arrow-right-a" ng-click="exitfunction();"></button>
+
+                <!--<input type="range" class="videospeedchanger video1speed" ng-model="video1.speed" ng-change="onchangevideospeed('.video2', video1.speed);" name="speed1" min="5" max="100">-->
+                <div class="extrabtns">
+                    <button class="button button-icon icon ion-speedometer" ng-click="videospeed('.video2', 0.4);"></button>
+                    <button class="button button-icon icon ion-arrow-right-a" ng-click="exitfunction();"></button>
+                    <button class="button" ng-click="cleardata();">CLEAR DATA</button>
+                </div>
             </div>
 
         </div>

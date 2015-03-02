@@ -225,3 +225,10 @@ span.ion-edit {
 .videocontrols .button.button-icon.icon {
     color: #00ABBD;
 }
+.videoplayer button {
+padding: 6px 22px;
+}
+.extrabtns button
+{
+padding: 6px 22px;
+}
