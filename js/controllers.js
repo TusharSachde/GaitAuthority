@@ -582,7 +582,7 @@ angular.module('starter.controllers', ['ngCordova'])
         /*vidtaken.show = true;*/
 
         if (page2 == false || page3 == false) {
-            if (page2 == true && ($location.path() != "/app/record" || $location.path() != "/app/recor2")) {
+            if (page2 == true && $location.path() != "/app/record" ) {
                 var options = {
                     limit: 1
                 };
