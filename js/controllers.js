@@ -759,10 +759,10 @@ angular.module('starter.controllers', ['ngCordova'])
         //SET VIDEO OBJECT
         $video1 = $("."+vidclass).get(0);
         //PLAY VIDEO
-        $video1.currentTime = 1;
+        //$video1.currentTime = 1;
         //VIDEO ACTIONS
-        $("."+vidclass).playbackRate = 1;
-        $("."+vidclass).play();
+        //$("."+vidclass).playbackRate = 1;
+        //$("."+vidclass).play();
 
         //ON UPDATE AND ON END FUNCTIONS            
         var video1seekupdate = function () {
