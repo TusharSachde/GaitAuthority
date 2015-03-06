@@ -582,63 +582,62 @@ angular.module('starter.controllers', ['ngCordova'])
         /*vidtaken.show = true;*/
 
         if (page2 == false || page3 == false) {
-            if (page2 == true && $location.path() != "/app/record" ) {
-                var options = {
-                    limit: 1
+            var options = {
+                limit: 1
+            };
+
+            $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
+                $scope.path = mediaFiles[0].fullPath;
+                //////STORING PATH FOR FUTURE USE/////
+                if (vidclass == ".video1") {
+                    video1path = $scope.path;
+                    addvid = true;
                 };
+                if (vidclass == ".video2") {
+                    video2path = $scope.path;
+                    addvid2 = true;
+                };
+                /////////////////////////////////
 
-                $cordovaCapture.captureVideo(options).then(function (mediaFiles) {
-                    $scope.path = mediaFiles[0].fullPath;
-                    //////STORING PATH FOR FUTURE USE/////
-                    if (vidclass == ".video1") {
-                        video1path = $scope.path;
-                        addvid = true;
-                    };
-                    if (vidclass == ".video2") {
-                        video2path = $scope.path;
-                        addvid2 = true;
-                    };
-                    /////////////////////////////////
+                var filestart = $scope.path.substr(0, 6);
+                if (filestart == "file:/") {
+                    $scope.path = $scope.path.substr(6);
+                }
+                $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
+                $scope.vidtaken = true;
 
-                    var filestart = $scope.path.substr(0, 6);
-                    if (filestart == "file:/") {
-                        $scope.path = $scope.path.substr(6);
-                    }
-                    $(holder).html('<video class="' + vid + '" width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
-                    $scope.vidtaken = true;
-
-                    /*//VIDEO ACTIONS
+                /*//VIDEO ACTIONS
                 $("." + vid).playbackRate = 1;
                 $("." + vid).play();*/
+                
+                //ON UPDATE AND ON END FUNCTIONS
+                $video1 = $(vidclass).get(0);
+                var video1seekupdate = function () {
+                    $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
+                    //console.log(($video1.currentTime) / ($video1.duration) * 100);
+                    // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
 
-                    //ON UPDATE AND ON END FUNCTIONS
-                    $video1 = $(vidclass).get(0);
-                    var video1seekupdate = function () {
-                        $(vidseek).val(($video1.currentTime) / ($video1.duration) * 100);
-                        //console.log(($video1.currentTime) / ($video1.duration) * 100);
-                        // $scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+                };
 
-                    };
+                $video1.ontimeupdate = video1seekupdate;
 
-                    $video1.ontimeupdate = video1seekupdate;
+                //function called when video ended
+                var videoend = function () {
+                    $(vidpause).hide();
+                    $(vidplay).show();
+                    $scope.video1.playpause = false;
+                };
+                $video1.onended = videoend;
 
-                    //function called when video ended
-                    var videoend = function () {
-                        $(vidpause).hide();
-                        $(vidplay).show();
-                        $scope.video1.playpause = false;
-                    };
-                    $video1.onended = videoend;
-
-                    console.log($scope.path);
-
-
+                console.log($scope.path);
 
 
-                }, function (err) {
-                    // An error occured. Show a message to the user
-                });
-            };
+
+
+            }, function (err) {
+                // An error occured. Show a message to the user
+            });
+
         } else {
             if (holder == ".myvideocon1") {
                 $scope.path = video1path;
@@ -731,16 +730,8 @@ angular.module('starter.controllers', ['ngCordova'])
         $location.path("app/home");
 
     };
-    console.log($location.path());
+
     //$scope.captureVideo(".myvideocon1", "video1", ".video1", ".video1seek", ".video1play", ".video1pause");
-    if (page2 == true) {
-        if ($location.path() == "/app/record") {
-            $scope.captureVideo(".myvideocon1", "video1", ".video1", ".video1seek", ".video1play", ".video1pause");
-        };
-        if ($location.path() == "/app/record2") {
-            $scope.captureVideo('.myvideocon1', 'video2', '.video2', '.video1seek', '.video1play', '.video1pause');
-        };
-    };
     if (page3 == true) {
         console.log("CALLING FIRST VIDEO IN COMPARE");
         console.log(video1path);
