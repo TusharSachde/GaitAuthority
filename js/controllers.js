@@ -10,6 +10,9 @@ var myconsole = 0;
 var ctx;
 var mouseX = 0;
 var mouseY = 0;
+var backpage1 = false;
+var backpage2 = false;
+var backpage3 = false;
 
 
 /*var vidtaken = {};
@@ -609,7 +612,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 /*//VIDEO ACTIONS
                 $("." + vid).playbackRate = 1;
                 $("." + vid).play();*/
-                
+
                 //ON UPDATE AND ON END FUNCTIONS
                 $video1 = $(vidclass).get(0);
                 var video1seekupdate = function () {
@@ -728,7 +731,69 @@ angular.module('starter.controllers', ['ngCordova'])
         page3 = true;
 
         $location.path("app/home");
+    };
+    
+    if (backpage1) {
+        if($location.path() == "/app/record")
+        {
+            $scope.path = video1path;
+            var holder = ".myvideocon1";
+            var vidclass = "video1";
+            var seekclass = ".video1seek";
+            var play = ".video1play";
+            var pause = ".video1pause";
+        }else{
+            $scope.path = video2path;
+            var holder = ".myvideocon1";
+            var vidclass = "video2";
+            var seekclass = ".video1seek";
+            var play = ".video1play";
+            var pause = ".video1pause";
+        };
+        var filestart = $scope.path.substr(0, 6);
+        if (filestart == "file:/") {
+            $scope.path = $scope.path.substr(6);
+        }
+        $(holder).html('<video class='+vidclass+' width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
 
+        //SET VIDEO OBJECT
+        $video1 = $("."+vidclass).get(0);
+        //PLAY VIDEO
+        $video1.currentTime = 1;
+        //VIDEO ACTIONS
+        $("."+vidclass).playbackRate = 1;
+        $("."+vidclass).play();
+
+        //ON UPDATE AND ON END FUNCTIONS            
+        var video1seekupdate = function () {
+            $(seekclass).val(($video1.currentTime) / ($video1.duration) * 100);
+            //console.log(($video1.currentTime) / ($video1.duration) * 100);
+            //$scope.ngvideo1.seek = ($video1.currentTime) / ($video1.duration) * 100;
+        };
+        $video1.ontimeupdate = video1seekupdate;
+
+        //function called when video ended
+        var videoend = function () {
+            $(pause).hide();
+            $(play).show();
+            $scope.video1.playpause = false;
+        };
+        $video1.onended = videoend;
+        backpage1 = false;
+    };
+    
+    $scope.mybacko = function () {
+        if ($location.path() == "/app/record2") {
+            $location.path("/app/record");
+            backpage1 = true;
+        };
+        if ($location.path() == "/app/home") {
+            $location.path("/app/record2");
+            backpage1 = true;
+        };
+
+        //$scope.captureVideo('.myvideocon1', 'video1','.video1','.video1seek','.video1play','.video1pause');
+        //captureVideo('.myvideocon1', 'video2','.video2','.video1seek','.video1play','.video1pause');
     };
 
     //$scope.captureVideo(".myvideocon1", "video1", ".video1", ".video1seek", ".video1play", ".video1pause");
