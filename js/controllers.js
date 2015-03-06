@@ -739,6 +739,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.path = video1path;
             var holder = ".myvideocon1";
             var vidclass = "video1";
+            var dotvidclass = ".video1";
             var seekclass = ".video1seek";
             var play = ".video1play";
             var pause = ".video1pause";
@@ -746,6 +747,7 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.path = video2path;
             var holder = ".myvideocon1";
             var vidclass = "video2";
+            var dotvidclass = ".video2";
             var seekclass = ".video1seek";
             var play = ".video1play";
             var pause = ".video1pause";
@@ -757,12 +759,12 @@ angular.module('starter.controllers', ['ngCordova'])
         $(holder).html('<video class='+vidclass+' width="100%" ><source src="file:///' + $scope.path + '" type="video/mp4"></video>');
 
         //SET VIDEO OBJECT
-        $video1 = $("."+vidclass).get(0);
+        $video1 = $(dotvidclass).get(0);
         //PLAY VIDEO
         //$video1.currentTime = 1;
         //VIDEO ACTIONS
-        //$("."+vidclass).playbackRate = 1;
-        //$("."+vidclass).play();
+        //$(dotvidclass).playbackRate = 1;
+        //$(dotvidclass).play();
 
         //ON UPDATE AND ON END FUNCTIONS            
         var video1seekupdate = function () {
